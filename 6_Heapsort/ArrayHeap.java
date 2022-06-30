@@ -12,8 +12,8 @@ public class ArrayHeap<T>{
     }
 
     public int parent(int i) {
-        if(i >= 0 && (i+1)/2 < heap.length)
-            return (i+1)/2;
+        if(i >= 0 && (i+1)/2-1 < heap.length)
+            return (i+1)/2-1;
         return -1;
     }
 
