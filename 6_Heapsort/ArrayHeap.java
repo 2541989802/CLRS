@@ -12,19 +12,21 @@ public class ArrayHeap<T>{
     }
 
     public int parent(int i) {
-        return i/2;
+        if(i >= 0 && (i+1)/2 < heap.length)
+            return (i+1)/2;
+        return -1;
     }
 
     public int left(int i) {
-        if(2*i < heap.length)
-            return 2*i;
+        if(i >= 0 && 2*i+1 < heap.length)
+            return 2*i+1;
         return -1;
         //throw new IndexOutOfBoundsException("ArrayHeap.left(int)");
     }
 
     public int right(int i) {
-        if(2*i+1 < heap.length)
-            return 2*i+1;
+        if(2*i+2 < heap.length)
+            return 2*i+2;
         return -1;
         //throw new IndexOutOfBoundsException("ArrayHeap.left(int)");
     }

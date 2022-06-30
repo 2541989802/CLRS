@@ -11,6 +11,7 @@ public class Test{
         System.out.println(heap.left(0)+" "+heap.right(0));
         System.out.println(heap.left(5)+" "+heap.right(5));
         //heap.maxHeapify(0);
+        /*
         for(Integer i : heap.heap){
             System.out.print(i + " ");
         }
@@ -28,6 +29,19 @@ public class Test{
         System.out.println("");        
         while(heap.size > 0){
             System.out.print(heap.extractMax() + " ");
+        }*/
+        for(Integer i : heap.heap){
+            System.out.print(i + " ");
         }
+        heap.buildMaxHeap();
+        for(Integer i : heap.heap){
+            System.out.print(i + " ");
+        }
+        heap.simplePrint();
+        heap.increaseKey(11,50);
+        for(Integer i : heap.heap){
+            System.out.print(i + " ");
+        }
+        heap.simplePrint();
     }
 }
