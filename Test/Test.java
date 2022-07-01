@@ -1,62 +1,21 @@
 package test;
-import heapsort.*;
+import lineartimesorting.*;
 
 public class Test{
     public static void main(String[] args){
-        //MaxHeap<Double> heap = new MaxHeap<>(new Double[]{0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,11.0});
-        PriorityQueues<Integer> heap = new PriorityQueues<>(new Integer[]{3,56,76,4,5,6,7,9,0,0,0,1,5,77,1,4,5,2,45,6,4,5,6});
-        //heap = new MaxHeap<>(new Integer[]{11,10,9,8,7,6,5,4,3,2,1});
-        /*System.out.println(heap.parent(0)+" "+heap.parent(1));
-        System.out.println(heap.parent(10)+" "+heap.parent(11));
-        System.out.println(heap.left(0)+" "+heap.right(0));
-        System.out.println(heap.left(5)+" "+heap.right(5));*/
-        //heap.maxHeapify(0);
-        /*
-        for(Integer i : heap.heap){
-            System.out.print(i + " ");
-        }
-        System.out.println("");
-        heap.heapSort();
-        for(Integer i : heap.heap){
-            System.out.print(i + " ");
-        }
-        System.out.println("");
-        heap.resetSize();
-        heap.buildMaxHeap();
-        for(Integer i : heap.heap){
-            System.out.print(i + " ");
-        }
-        System.out.println("");        
-        while(heap.size > 0){
-            System.out.print(heap.extractMax() + " ");
-        }*/
-        heap.simplePrint();
-        heap.buildMaxHeap();
-        heap.simplePrint();
-        heap.increaseKey(11,50);
-        heap.simplePrint();
-        heap.increaseKey(10,20);
-        heap.simplePrint();
-        heap.increaseKey(9,40);
-        heap.simplePrint();
-        heap.increaseKey(8,30);
-        heap.simplePrint();
-        heap.increaseKey(7,100);
-        heap.simplePrint();
-        System.out.println("extract");
-        heap.extractMax();
-        heap.simplePrint();
-        heap.extractMax();
-        heap.simplePrint();
-        heap.extractMax();
-        heap.simplePrint();
-        heap.extractMax();
-        heap.simplePrint();
-        heap.insertKey(0);
-        heap.simplePrint();
-        heap.insertKey(15);
-        heap.simplePrint();
-        heap.insertKey(60);
-        heap.simplePrint();
+        CountingSort array = new CountingSort(new int[]{1,-3,4,2,-5,6,7,8,-1,5,35,-8,12,4,0});
+        array.print();
+        array.sort();
+        array.print();
+
+        array.random();
+        array.print();
+        array.sort();
+        array.print();
+        
+        array.random();
+        array.print();
+        array.sort();
+        array.print();
     }
 }
