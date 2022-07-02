@@ -3,6 +3,7 @@
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\6_Heapsort\\MaxHeap.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\6_Heapsort\\PriorityQueues.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\7_Quicksort\\QuickSort.java" 
+"C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\8_Sorting_in_Linear_Time\\BucketSort.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\8_Sorting_in_Linear_Time\\CountingSort.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\8_Sorting_in_Linear_Time\\RadixSort.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\Test\\Test.java" 

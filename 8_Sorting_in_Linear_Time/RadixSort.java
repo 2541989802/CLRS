@@ -10,16 +10,22 @@ public class RadixSort{
     
     public void sort(){
         int d = 1;
-        int b = 10;
+        int b = 1;
+        int digit = array.length;
+        while(digit > 0){
+            digit = digit/10;
+            b = b*10;
+        }
+        digit = b;
         while(d != 0){
             d = 0;
             key = new int[array.length];
             for(int i = 0; i < key.length; i++){
-                key[i] = (array[i] % b)*10/b;
+                key[i] = (array[i] % b)*digit/b;
                 if(key[i] != 0)
                     d = 1;
             }
-            b = b*10;
+            b = b*digit;
             int k = 0;
             int m = 0;
             for(int i = 0; i < key.length; i++){
