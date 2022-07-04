@@ -2,13 +2,15 @@ package quicksort;
 public class QuickSort<T extends Comparable<T>>{
     public T[] array;
     public boolean acesending = true;
+
+    public QuickSort(){}
     public QuickSort(T[] array){
         this.array = array;
     }
     //inclusive
-    private int partition(int l, int r, boolean random){
+    public int partition(T[] array, int l, int r, boolean random){
         if(random){
-            random_h(l, r);
+            random_h(array, l, r);
         }
         int m = l;
         while(array[m] == null && m <= r){
@@ -46,7 +48,7 @@ public class QuickSort<T extends Comparable<T>>{
         return m;
     }
 
-    private void random_h(int l, int r){
+    private void random_h(T[] array, int l, int r){
         int len = r+1-l;
         T t;
         int index;
@@ -59,26 +61,26 @@ public class QuickSort<T extends Comparable<T>>{
     }
 
     public void random(){
-        random_h(0, array.length-1);
+        random_h(array, 0, array.length-1);
         return;
     }
 
-    private void quickSort_h(int i, int j, boolean random){
+    public void quickSort_h(T[] array, int i, int j, boolean random){
         if(i >= j)
             return;
-        int m = partition(i,j, random);
-        quickSort_h(i,m-1, random);
-        quickSort_h(m+1, j, random);
+        int m = partition(array, i,j, random);
+        quickSort_h(array, i,m-1, random);
+        quickSort_h(array, m+1, j, random);
         return;
     }
 
     public void quickSort() {
-        quickSort_h(0, array.length-1, false);
+        quickSort_h(array, 0, array.length-1, false);
         return;
     }
 
     public void quickSortRandom() {
-        quickSort_h(0, array.length-1, true);
+        quickSort_h(array, 0, array.length-1, true);
         return;
     }
 

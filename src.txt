@@ -6,4 +6,6 @@
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\8_Sorting_in_Linear_Time\\BucketSort.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\8_Sorting_in_Linear_Time\\CountingSort.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\8_Sorting_in_Linear_Time\\RadixSort.java" 
+"C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\9_MidianAndOrder\\ExpectLinearSelection.java" 
+"C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\9_MidianAndOrder\\LinearSelection.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\Test\\Test.java" 
