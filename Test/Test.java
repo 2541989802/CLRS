@@ -2,43 +2,25 @@ package test;
 import lineartimesorting.*;
 import selection.*;
 import quicksort.*;
-import java.util.ArrayList;
+import basicdatastructure.*;
 
 public class Test{
     public static void main(String[] args){
-        /*
-        BucketSort array = new BucketSort(new int[]{1,-3,4,2,-5,6,7,8,-1,5,35,-8,12,4,0});
-        array.print();
-        array.sort();
-        array.print();
-        array.random();
-        ExpectLinearSelection<Integer> selector = new ExpectLinearSelection<>(intAtoIntA(array.array));
-        for(int i = 0; i < selector.array.length; i++){
-            System.out.print(selector.select(i+1)+ ", ");
-        }
-        
-        array = new BucketSort(generate(-100, 100, 1000));
-        array.print();
-        array.sort();
-        array.print();
-        chechk(array.array);
-        array.random();
-        selector = new ExpectLinearSelection<>(intAtoIntA(array.array));
-        for(int i = 0; i < selector.array.length; i++){
-            System.out.print(selector.select(i+1) + ", ");
-        }*/
-        LinearSelection<Integer> sel = new LinearSelection<Integer>(intAtoIntA(generate(-1000,1000,1000)));
-        int[] array = new int[sel.array.length];
-        for(int i = 0; i < sel.array.length; i++){
-            array[i]=sel.select(i+1);
-            System.out.print(array[i]+", ");
+        Queue<Integer> qi = new Queue<>(intAtoIntA(generate(0,9,10)));
+        int i = 10;
+        while(i!=0){
+            System.out.print(qi.dequeue()+", ");
+            i--;
         }
         System.out.println("");
-        check(array);
-        /*QuickSort<Integer> quick = new QuickSort<Integer>(sel.array);
-        quick.quickSort();
-        quick.print();*/
-
+        while(i!=10){
+            qi.enqueue(i);
+            i++;
+        }
+        while(i!=0){
+            System.out.print(qi.dequeue()+", ");
+            i--;
+        }
     }
     public static int[] generate(int min, int max, int len){
         int[] res = new int[len];

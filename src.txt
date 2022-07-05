@@ -1,4 +1,6 @@
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\set.java" 
+"C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\10_BasicDataStructure\\Queue.java" 
+"C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\10_BasicDataStructure\\Stack.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\6_Heapsort\\ArrayHeap.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\6_Heapsort\\MaxHeap.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\6_Heapsort\\PriorityQueues.java" 
