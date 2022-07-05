@@ -27,11 +27,17 @@ public class Test{
         for(int i = 0; i < selector.array.length; i++){
             System.out.print(selector.select(i+1) + ", ");
         }*/
-        LinearSelection<Integer> sel = new LinearSelection<Integer>(intAtoIntA(generate(-100,100,10)));
-        System.out.println(sel.select(5));
-        QuickSort<Integer> quick = new QuickSort<Integer>(sel.array);
+        LinearSelection<Integer> sel = new LinearSelection<Integer>(intAtoIntA(generate(-1000,1000,1000)));
+        int[] array = new int[sel.array.length];
+        for(int i = 0; i < sel.array.length; i++){
+            array[i]=sel.select(i+1);
+            System.out.print(array[i]+", ");
+        }
+        System.out.println("");
+        check(array);
+        /*QuickSort<Integer> quick = new QuickSort<Integer>(sel.array);
         quick.quickSort();
-        quick.print();
+        quick.print();*/
 
     }
     public static int[] generate(int min, int max, int len){
@@ -40,7 +46,7 @@ public class Test{
             res[i] = (int)(Math.random()*(max+1-min))+min;
         return res;
     }
-    public static void chechk(int[] A){
+    public static void check(int[] A){
         for(int i = 1; i < A.length; i++){
             if(A[i-1]>A[i]){
                 System.out. println(false);
