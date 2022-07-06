@@ -34,4 +34,14 @@ public class Queue<T>{
         head = (head+1)%oa.length;
         return(T)(ret);
     }
+
+    public boolean isEmpty(){
+        return head == tail;
+    }
+
+    public int size(){
+        if(tail<head)
+            return tail+oa.length-head;
+        return tail-head;
+    }
 }

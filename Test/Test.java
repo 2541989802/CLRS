@@ -6,22 +6,8 @@ import basicdatastructure.*;
 
 public class Test{
     public static void main(String[] args){
-        Queue<Integer> qi = new Queue<>(intAtoIntA(generate(0,9,10)));
-        int i = 10;
-        while(i!=0){
-            System.out.print(qi.dequeue()+", ");
-            i--;
-        }
-        System.out.println("");
-        while(i!=10){
-            qi.enqueue(i);
-            i++;
-        }
-        while(i!=0){
-            System.out.print(qi.dequeue()+", ");
-            i--;
-        }
     }
+
     public static int[] generate(int min, int max, int len){
         int[] res = new int[len];
         for(int i = 0; i < len; i++)
