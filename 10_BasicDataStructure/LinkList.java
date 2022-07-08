@@ -1,5 +1,6 @@
 package basicdatastructure;
 
+@SuppressWarnings("unchecked")
 public class LinkList<T extends Comparable>{
     private class Node<T>{
         public Node<T> prev;

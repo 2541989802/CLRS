@@ -1,5 +1,6 @@
 package basicdatastructure;
 
+@SuppressWarnings("unchecked")
 public class ArrayLinkList<T extends Comparable<T>>{
     private int[] next;
     public Object[] oa;
