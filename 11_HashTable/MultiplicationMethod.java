@@ -11,7 +11,7 @@ public class MultiplicationMethod implements Hashfun{
     }
 
     public int getSlots(){
-        return Math.pow(2,bitslots);
+        return (int)Math.pow(2,bitslots);
     }
 
     public int hash(int k){

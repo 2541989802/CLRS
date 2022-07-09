@@ -3,9 +3,21 @@ import lineartimesorting.*;
 import selection.*;
 import quicksort.*;
 import basicdatastructure.*;
+import numbertheoretic.*;
 
 public class Test{
     public static void main(String[] args){
+        int a = 437;
+        int b = 278;
+        Euclid e = new Euclid();
+        Euclid.GCD res = e.extendGcd(a,b);
+        System.out.println(String.format("%d = %d*%d %s %d*%d",res.d, res.x, a, res.y<0?"":"+", res.y, b));
+        a = (int)(Math.random()*1000); b = (int)(Math.random()*1000); res = e.extendGcd(a,b);
+        System.out.println(String.format("%d = %d*%d %s %d*%d",res.d, res.x, a, res.y<0?"":"+", res.y, b));
+        a = (int)(Math.random()*1000); b = (int)(Math.random()*1000); res = e.extendGcd(a,b);
+        System.out.println(String.format("%d = %d*%d %s %d*%d",res.d, res.x, a, res.y<0?"":"+", res.y, b));
+        a = (int)(Math.random()*1000); b = (int)(Math.random()*1000); res = e.extendGcd(a,b);
+        System.out.println(String.format("%d = %d*%d %s %d*%d",res.d, res.x, a, res.y<0?"":"+", res.y, b));
     }
 
     public static int[] generate(int min, int max, int len){
