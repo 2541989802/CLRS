@@ -15,6 +15,6 @@ public class MultiplicationMethod implements Hashfun{
     }
 
     public int hash(int k){
-        return (int)(k*A*Math.pow(2,bitslots));
+        return (int)(((k*A)%1)*Math.pow(2,bitslots));
     }
 }

@@ -1,5 +1,7 @@
 package hashtable;
 
+import numbertheoretic.*;
+
 public class DivisionMethod implements Hashfun{
     private int slots;
     public boolean reminder = true;
@@ -13,9 +15,10 @@ public class DivisionMethod implements Hashfun{
     }
 
     private int findPrime(int nkeys, int loadfactor){
-        if(reminder)
-            System.out.println("This is a unfinished function. Delete this reminder after finished.");
-        return nkeys;
+        Prime pr = new Prime();
+        int m = nkeys%loadfactor;
+        m = nkeys/loadfactor+(m==0?0:1);
+        return pr.findup(m);
     }
 
     public int getSlots(){

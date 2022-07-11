@@ -5,16 +5,22 @@ import numbertheoretic.*;
 public class SimpleRSA{
     private int p;
     private int q;
-    private int n;
+    public int n;
     public int e;
     private int d;
     public SimpleRSA(int lo, int le){
         p = findPrime(lo);
         q = findPrime(p+lo);
         n = p*q;
-        e = findPrime(le);
+        le = le % n;
+        e = (le+(int)(100*Math.random()))%((q-1)*(p-1));
         Euclid ex = new Euclid();
-        d = ex.modSolver(e, 1, (q-1)*(p-1))[0];
+        int[] t = ex.modSolver(e, 1, (q-1)*(p-1));
+        while(t==null){
+            e++;
+            t = ex.modSolver(e, 1, (q-1)*(p-1));
+        }
+        d = t[0];
     }
 
     public int encrypt(int m){
@@ -31,8 +37,13 @@ public class SimpleRSA{
         return ex.exp(m, d, n);
     }
 
+    public int crypt(int m, int p, int n){
+        ModExp ex = new ModExp();
+        return ex.exp(m, p, n);
+    }
+
     public int findPrime(int lo){
-        System.out.println("Warning:: This is an unfinished method.");
-        return lo;
+        Prime pr = new Prime();
+        return pr.findup(lo);
     }
 }

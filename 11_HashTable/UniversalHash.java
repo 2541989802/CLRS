@@ -1,5 +1,7 @@
 package hashtable;
 
+import numbertheoretic.*;
+
 public class UniversalHash implements Hashfun{
     private int prime;
     private int slots;
@@ -12,9 +14,8 @@ public class UniversalHash implements Hashfun{
     }
 
     private int findPrime(int slots){
-        if(reminder)
-            System.out.println("This is a unfinished function. Delete this reminder after finished.");
-        return slots;
+        Prime pr = new Prime();
+        return pr.findup(slots);
     }
 
     public int hash(int k){

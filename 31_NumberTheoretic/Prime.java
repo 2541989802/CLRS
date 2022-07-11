@@ -3,8 +3,20 @@ package numbertheoretic;
 import numbertheoretic.*;
 
 public class Prime{
-    public int find(int low){
-        return -1;
+    public int findup(int low){
+        int res = low;
+        while(!millerRabin(res))
+            res++;
+        return res;
+    }
+    public int finddown(int hi){
+        int res = hi;
+        while(!millerRabin(res)){
+            if(res<1)
+                return 2;
+            res--;
+        }
+        return res;
     }
 
     public boolean sudoPrime(int n){
