@@ -7,17 +7,29 @@ import numbertheoretic.*;
 
 public class Test{
     public static void main(String[] args){
-        int a = 437;
-        int b = 278;
-        Euclid e = new Euclid();
-        Euclid.GCD res = e.extendGcd(a,b);
-        System.out.println(String.format("%d = %d*%d %s %d*%d",res.d, res.x, a, res.y<0?"":"+", res.y, b));
-        a = (int)(Math.random()*1000); b = (int)(Math.random()*1000); res = e.extendGcd(a,b);
-        System.out.println(String.format("%d = %d*%d %s %d*%d",res.d, res.x, a, res.y<0?"":"+", res.y, b));
-        a = (int)(Math.random()*1000); b = (int)(Math.random()*1000); res = e.extendGcd(a,b);
-        System.out.println(String.format("%d = %d*%d %s %d*%d",res.d, res.x, a, res.y<0?"":"+", res.y, b));
-        a = (int)(Math.random()*1000); b = (int)(Math.random()*1000); res = e.extendGcd(a,b);
-        System.out.println(String.format("%d = %d*%d %s %d*%d",res.d, res.x, a, res.y<0?"":"+", res.y, b));
+        RhoFactor rh = new RhoFactor();
+        Prime pr = new Prime();
+        int d, p;
+        System.out.println(pr.millerRabin(2));
+        /*
+        d = (int)(Math.random()*1000)+1000; while(pr.millerRabin(d)) d = (int)(Math.random()*1000)+1000;
+        System.out.println("\n\nnumber: "+d);
+        while(d!=1){
+            p = rh.rho(d);
+            while(p==-1)
+                p = rh.rho(d);
+            System.out.print(p + ", ");
+            d = d/p;
+        }*/
+        d = 1183;
+        System.out.println("\n\nnumber: "+d);
+        while(d!=1){
+            p = rh.rho(d);
+            while(p==-1)
+                p = rh.rho(d);
+            System.out.print(p + ", ");
+            d = d/p;
+        }
     }
 
     public static int[] generate(int min, int max, int len){
