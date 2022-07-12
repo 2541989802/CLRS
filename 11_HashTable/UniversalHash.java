@@ -11,6 +11,7 @@ public class UniversalHash implements Hashfun{
     public UniversalHash(int slots){
         this.slots = slots;
         findPrime(slots);
+        hash(0);
     }
 
     private int findPrime(int slots){
@@ -29,6 +30,10 @@ public class UniversalHash implements Hashfun{
     public void setAB(int a, int b){
         this.a = a;
         this.b = b;
+    }
+
+    public int getSlots(){
+        return slots;
     }
 
 }
