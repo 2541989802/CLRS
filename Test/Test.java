@@ -4,9 +4,31 @@ import selection.*;
 import quicksort.*;
 import basicdatastructure.*;
 import numbertheoretic.*;
+import hashtable.*;
 
 public class Test{
     public static void main(String[] args){
+        int[] key = new int[20];
+        OpenAddress<LinearProb> table = new OpenAddress<LinearProb>(new LinearProb(), key.length);
+        for(int i = 0; i < key.length; i++){
+            key[i] = (int)(Math.random()*100)+(i==0?0:key[i-1]+1);
+            table.insert(i*10, key[i]);
+        }
+        table.print();
+        int t = -1;
+        for(int i = 0; i < key.length; i++){
+            t = table.search(key[i]);
+            if(t!=-1)
+                System.out.print(table.data[t]+", ");
+            else
+                System.out.print("nun, ");
+        }
+        System.out.println("");
+        for(int i = 0; i < key.length; i++){
+            if(t!=-1)
+                System.out.print(table.collision(key[i])+", ");
+        }
+
     }
 
     public static int[] generate(int min, int max, int len){

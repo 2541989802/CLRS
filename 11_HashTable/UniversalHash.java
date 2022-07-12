@@ -14,9 +14,9 @@ public class UniversalHash implements Hashfun{
         hash(0);
     }
 
-    private int findPrime(int slots){
+    private void findPrime(int slots){
         Prime pr = new Prime();
-        return pr.findup(slots);
+        prime = pr.findup(slots);
     }
 
     public int hash(int k){

@@ -1,9 +1,9 @@
 package hashtable;
 
 public class OpenAddress<T extends OpenAddressHash>{
-    int[] data;
-    int[] key;
-    T hash;
+    public int[] data;
+    public int[] key;
+    private T hash;
 
     public OpenAddress(T hash, int slots){
         this.hash = hash;
@@ -38,5 +38,31 @@ public class OpenAddress<T extends OpenAddressHash>{
         if(this.key[hash.hash(key,i)]!=-1 && i!=getSlots())
             return hash.hash(key,i);
         return -1;
+    }
+
+    public int collision(int key){
+        int i;
+        boolean find = false;
+        for(i = 0; i < getSlots(); i++){
+            if(this.key[hash.hash(key, i)]==key){
+                find=true;
+                break;
+            }
+        }
+        if(!find)
+            return -1;
+        if(i!=getSlots())
+            return i;
+        return -1;
+    }
+
+    public void print(){
+        System.out.print("\nkey:\t");
+        for(int i = 0; i < data.length;i++)
+            System.out.print(key[i]+", ");
+        System.out.print("\ndata:\t");
+        for(int i = 0; i < data.length;i++)
+            System.out.print(data[i]+", ");
+        System.out.print("\n");
     }
 }
