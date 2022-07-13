@@ -11,6 +11,10 @@ public class UniversalHash implements Hashfun{
 
     public UniversalHash(){}
 
+    public UniversalHash(boolean AB){
+        constAB = AB;
+    }
+
     public UniversalHash(int slots){
         setSlots(0, slots);
     }

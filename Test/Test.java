@@ -9,20 +9,18 @@ import hashtable.*;
 public class Test{
     public static void main(String[] args){
         int[] key = new int[10];
-        UniversalHash dh = new UniversalHash();
-        dh.constAB = true;
-        HashTable<UniversalHash, Integer> table = new HashTable<UniversalHash, Integer>(dh, key.length, 10);
+        Integer[] data = new Integer[key.length];
         for(int i = 0; i < key.length; i++){
-            //key[i] = i;
             key[i] = (int)(Math.random()*100)+(i==0?0:key[i-1]+1);
-            table.insert(i*10, key[i]);
+            data[i] = i*10;
         }
-        table.print();
+        PerfectHash<Integer> table = new PerfectHash<Integer>(data, key);
         for(int i = 0; i < key.length; i++){
             System.out.print(table.search(key[i])+", ");
-            
         }
-        System.out.println("");
+        for(int i = 0; i < key.length; i++){
+            System.out.print(table.collision(key[i])+", ");
+        }
     }
 
     public static int[] generate(int min, int max, int len){

@@ -18,6 +18,7 @@ public class HashTable<T extends Hashfun, E>{
     public LinkList<Data<E>>[] table;
     public T hash;
 
+    @SuppressWarnings("unchecked")
     public HashTable(T hash, int nkey, int slots){
         this.hash = hash;
         hash.setSlots(nkey, slots);
@@ -44,9 +45,11 @@ public class HashTable<T extends Hashfun, E>{
     public int collision(int key){
         LinkList<Data<E>>.Node<Data<E>> head = table[hash.hash(key)].head;
         Data<E> k = new Data<E>(null, key);
-        int i = 0;
-        while(head!=null && head.data.compareTo(k)!=0)
+        int i = 1;
+        while(head!=null && head.data.compareTo(k)!=0){
             i++;
+            head = head.next;
+        }
         return i;
     }
 
