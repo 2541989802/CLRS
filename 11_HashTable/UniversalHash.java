@@ -26,7 +26,7 @@ public class UniversalHash implements Hashfun{
 
     private void findPrime(int slots){
         Prime pr = new Prime();
-        prime = pr.findup(slots);
+        prime = pr.findup(slots+(int)(Math.random()*slots));
     }
 
     public int hash(int k){

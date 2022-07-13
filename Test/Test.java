@@ -8,7 +8,7 @@ import hashtable.*;
 
 public class Test{
     public static void main(String[] args){
-        int[] key = new int[10];
+        int[] key = new int[1000];
         Integer[] data = new Integer[key.length];
         for(int i = 0; i < key.length; i++){
             key[i] = (int)(Math.random()*100)+(i==0?0:key[i-1]+1);
@@ -18,9 +18,7 @@ public class Test{
         for(int i = 0; i < key.length; i++){
             System.out.print(table.search(key[i])+", ");
         }
-        for(int i = 0; i < key.length; i++){
-            System.out.print(table.collision(key[i])+", ");
-        }
+        System.out.println("\n"+table.size());
     }
 
     public static int[] generate(int min, int max, int len){

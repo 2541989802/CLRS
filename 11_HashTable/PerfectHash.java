@@ -14,6 +14,7 @@ public class PerfectHash<E>{
         setup(data, key);
     }
 
+    @SuppressWarnings("unchecked")
     private void setup(E[] data, int[] key){
         int[] count = new int[key.length];
         table = new HashTable[key.length];
@@ -28,11 +29,6 @@ public class PerfectHash<E>{
         for(int i = 0; i < data.length; i++){
             table[h1.hash(key[i])].insert(data[i], key[i]);
         }
-        /////////////////////
-        for(int i = 0; i < key.length; i++){
-            System.out.print(search(key[i])+", ");
-        }
-        /////////////////////
         for(int i = 0; i < key.length; i++){
             if(table[i]!=null){
                 int maxsize=0;
@@ -54,16 +50,28 @@ public class PerfectHash<E>{
                             maxsize = list.getSize();
                     }
                 }
-
             }
         }
     }
 
     public E search(int key){
+        if(table[h1.hash(key)]==null)
+            return null;
         return table[h1.hash(key)].search(key);
     }
 
     public int collision(int key){
+        if(table[h1.hash(key)]==null)
+            return 1;
         return table[h1.hash(key)].collision(key);
+    }
+
+    public int size(){
+        int size = 0;
+        for(int i = 0; i < table.length; i++){
+            if(table[i]!=null)
+                size += table[i].table.length;
+        }
+        return size;
     }
 }

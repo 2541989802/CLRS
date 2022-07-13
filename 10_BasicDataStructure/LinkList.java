@@ -20,7 +20,7 @@ public class LinkList<T extends Comparable> implements Iterable<T>{
         }
 
         public boolean hasNext(){
-            return head!=null && head.next!=null;
+            return head!=null;
         }
 
         public T next(){
