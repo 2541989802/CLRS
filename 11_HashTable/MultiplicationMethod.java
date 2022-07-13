@@ -2,12 +2,18 @@ package hashtable;
 
 public class MultiplicationMethod implements Hashfun{
     private double A = Math.random();
-    private int bitsize;
-    private int bitslots;
+    private int bitsize = 0;
+    private int bitslots = 0;
 
-    public MultiplicationMethod(int bk, int bs){
-        bitsize = bk;
-        bitslots = bs;
+    public void setSlots(int nkey, int slots){
+        while(nkey > 0){
+            nkey=nkey/2;
+            bitsize++;
+        }
+        while(slots > 0){
+            slots=slots/2;
+            bitslots++;
+        }
     }
 
     public int getSlots(){
@@ -15,6 +21,6 @@ public class MultiplicationMethod implements Hashfun{
     }
 
     public int hash(int k){
-        return (int)(((k*A)%1)*Math.pow(2,bitslots));
+        return (int)(((k*A)%1)*getSlots());
     }
 }

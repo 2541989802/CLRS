@@ -4,14 +4,19 @@ import numbertheoretic.*;
 
 public class DivisionMethod implements Hashfun{
     private int slots;
-    public boolean reminder = true;
 
-    public DivisionMethod(int nkeys, int loadfactor){
-        slots = findPrime(nkeys, loadfactor);
+    public DivisionMethod(){}
+
+    public DivisionMethod(int nkeys, int slots){
+        setSlots(nkeys, slots);
     }
 
     public DivisionMethod(int nkeys){
         this(nkeys, 5);
+    }
+
+    public void setSlots(int nkeys, int slots){
+        this.slots = findPrime(nkeys, nkeys/slots);
     }
 
     private int findPrime(int nkeys, int loadfactor){

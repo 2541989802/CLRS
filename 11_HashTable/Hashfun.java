@@ -1,5 +1,7 @@
 package hashtable;
 
 public interface Hashfun{
-    abstract public int hash(int k);
+    public void setSlots(int nkey, int slot);
+    public int getSlots();
+    public int hash(int key);
 }
