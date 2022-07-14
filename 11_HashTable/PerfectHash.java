@@ -1,6 +1,7 @@
 package hashtable;
 
 import basicdatastructure.*;
+import hashtable.util.*;
 
 public class PerfectHash<E>{
     private HashTable<UniversalHash, E>[] table;

@@ -1,4 +1,4 @@
-package hashtable;
+package hashtable.util;
 
 public class DirectAddress implements Hashfun{
     public int slots;

@@ -1,4 +1,4 @@
-package hashtable;
+package hashtable.util;
 
 public class MultiplicationMethod implements Hashfun{
     private double A = Math.random();

@@ -1,4 +1,4 @@
-package hashtable;
+package hashtable.util;
 
 public class QuadraticProb implements OpenAddressHash{
     public UniversalHash hash;

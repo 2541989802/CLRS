@@ -1,4 +1,4 @@
-package hashtable;
+package hashtable.util;
 
 public interface OpenAddressHash{
     public void setSlots(int slot);

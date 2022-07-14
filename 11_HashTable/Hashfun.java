@@ -1,4 +1,4 @@
-package hashtable;
+package hashtable.util;
 
 public interface Hashfun{
     public void setSlots(int nkey, int slot);

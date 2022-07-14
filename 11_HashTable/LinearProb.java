@@ -1,4 +1,4 @@
-package hashtable;
+package hashtable.util;
 
 public class LinearProb implements OpenAddressHash{
     public UniversalHash hash;

@@ -1,5 +1,7 @@
 package hashtable;
 
+import hashtable.util.*;
+
 public class OpenAddress<T extends OpenAddressHash>{
     public int[] data;
     public int[] key;

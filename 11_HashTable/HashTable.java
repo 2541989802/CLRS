@@ -1,6 +1,7 @@
 package hashtable;
 
 import basicdatastructure.*;
+import hashtable.util.*;
 
 public class HashTable<T extends Hashfun, E>{
     public class Data<E> implements Comparable<Data<E>>{

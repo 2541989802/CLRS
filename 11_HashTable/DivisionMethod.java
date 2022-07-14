@@ -1,4 +1,4 @@
-package hashtable;
+package hashtable.util;
 
 import numbertheoretic.*;
 
