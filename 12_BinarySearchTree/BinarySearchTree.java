@@ -1,7 +1,7 @@
 package binarysearchtree;
 
-public class BinarySearchTree<T extends Compareble<T>>{
-    public class Node<T> implements Compareble<Node<T>>{
+public class BinarySearchTree<T extends Comparable<T>>{
+    public class Node<T extends Comparable<T>> implements Comparable<Node<T>>{
         public T data;
         public Node<T> parent;
         public Node<T> left;
@@ -14,7 +14,7 @@ public class BinarySearchTree<T extends Compareble<T>>{
 
         public int compareTo(Node<T> o){
             if(o==null)
-                throw new RuntimeException("BinarSearchTree<T>.Node<T>.compareTo(): recieve a null object, shouldn't happen in code");
+                throw new RuntimeException("BinarySearchTree<T>.Node<T>.compareTo(): recieve a null object, shouldn't happen in code");
             if(data!=null)
                 return data.compareTo(o.data);
             if(o.data!=null)
@@ -41,9 +41,9 @@ public class BinarySearchTree<T extends Compareble<T>>{
         else if(node.compareTo(other)==0)
             return node;
         else if(node.compareTo(other)>0)
-            return search(node.left, key);
+            return search1_h(node.left, key);
         else
-            return search(node.right, key);
+            return search1_h(node.right, key);
     }
 
     private Node<T> search2_h(Node<T> node, T key){
@@ -118,7 +118,7 @@ public class BinarySearchTree<T extends Compareble<T>>{
         z.parent = p;
         if(p==null)
             root = z;
-        else(p.compareTo(z)>=0)
+        else if(p.compareTo(z)>=0)
             p.left = z;
         else
             p.right = z;
@@ -152,5 +152,9 @@ public class BinarySearchTree<T extends Compareble<T>>{
             y.left = u.left;
             y.left.parent = y;
         }
+    }
+
+    public void delete(T key){
+        delete(search2_h(root, key));
     }
 }

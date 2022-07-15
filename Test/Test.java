@@ -5,20 +5,19 @@ import quicksort.*;
 import basicdatastructure.*;
 import numbertheoretic.*;
 import hashtable.*;
+import binarysearchtree.*;
 
 public class Test{
     public static void main(String[] args){
-        int[] key = new int[1000];
-        Integer[] data = new Integer[key.length];
-        for(int i = 0; i < key.length; i++){
-            key[i] = (int)(Math.random()*100)+(i==0?0:key[i-1]+1);
-            data[i] = i*10;
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        for(int i = 0; i < 100; i++){
+            tree.insert((int)(Math.random()*100));
         }
-        PerfectHash<Integer> table = new PerfectHash<Integer>(data, key);
-        for(int i = 0; i < key.length; i++){
-            System.out.print(table.search(key[i])+", ");
+        Integer t = tree.min();
+        while(t!=null){
+            System.out.print(t+", ");
+            t = tree.successor(t);
         }
-        System.out.println("\n"+table.size());
     }
 
     public static int[] generate(int min, int max, int len){
