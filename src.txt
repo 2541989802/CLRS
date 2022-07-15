@@ -16,6 +16,7 @@
 "C:\\Users\\sdz20\\Desktop\\Georgia Tech\\CLRS\\11_HashTable\\QuadraticProb.java" 
 "C:\\Users\\sdz20\\Desktop\\Georgia Tech\\CLRS\\11_HashTable\\UniversalHash.java" 
 "C:\\Users\\sdz20\\Desktop\\Georgia Tech\\CLRS\\12_BinarySearchTree\\BinarySearchTree.java" 
+"C:\\Users\\sdz20\\Desktop\\Georgia Tech\\CLRS\\13_RedBlackTree\\RedBlackTree.java" 
 "C:\\Users\\sdz20\\Desktop\\Georgia Tech\\CLRS\\31_NumberTheoretic\\Euclid.java" 
 "C:\\Users\\sdz20\\Desktop\\Georgia Tech\\CLRS\\31_NumberTheoretic\\ModExp.java" 
 "C:\\Users\\sdz20\\Desktop\\Georgia Tech\\CLRS\\31_NumberTheoretic\\Prime.java" 
