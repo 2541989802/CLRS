@@ -6,10 +6,16 @@ import basicdatastructure.*;
 import numbertheoretic.*;
 import hashtable.*;
 import binarysearchtree.*;
+import redblacktree.*;
 
 public class Test{
     public static void main(String[] args){
-        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>();
+        RedBlackTree<Integer> tree = new RedBlackTree<Integer>();
+        tree.insert(1);
+        System.out.print(tree.isBlack(1));
+        tree.setRoot(2);
+        System.out.print(tree.isBlack(2));
+        /*
         for(int i = 0; i < 100; i++){
             tree.insert((int)(Math.random()*100));
         }
@@ -18,6 +24,7 @@ public class Test{
             System.out.print(t+", ");
             t = tree.successor(t);
         }
+        */
     }
 
     public static int[] generate(int min, int max, int len){

@@ -34,7 +34,7 @@ public class BinarySearchTree<T extends Comparable<T>>{
         }
     }
 
-    private Node<T> search1_h(Node<T> node, T key){
+    public Node<T> search1_h(Node<T> node, T key){
         Node<T> other = new Node<T>(key,null);
         if(node==null)
             return null;
@@ -46,7 +46,7 @@ public class BinarySearchTree<T extends Comparable<T>>{
             return search1_h(node.right, key);
     }
 
-    private Node<T> search2_h(Node<T> node, T key){
+    public Node<T> search2_h(Node<T> node, T key){
         Node<T> other = new Node<T>(key, null);
         while(node!=null&&node.compareTo(other)!=0){
             if(node.compareTo(other)>0)
@@ -62,7 +62,7 @@ public class BinarySearchTree<T extends Comparable<T>>{
         return res!=null?res.data:null;
     }
 
-    private Node<T> min_h(Node<T> node){
+    public Node<T> min_h(Node<T> node){
         while(node!=null&&node.left!=null){
             node = node.left;
         }
@@ -74,7 +74,7 @@ public class BinarySearchTree<T extends Comparable<T>>{
         return res!=null?res.data:null;
     }
 
-    private Node<T> max_h(Node<T> node){
+    public Node<T> max_h(Node<T> node){
         while(node!=null&&node.right!=null){
             node = node.right;
         }
@@ -86,7 +86,7 @@ public class BinarySearchTree<T extends Comparable<T>>{
         return res!=null?res.data:null;
     }
 
-    private Node<T> successor_h(Node<T> node){
+    public Node<T> successor_h(Node<T> node){
         if(node!=null){
             if(node.right!=null)
                 return min_h(node.right);
@@ -125,7 +125,7 @@ public class BinarySearchTree<T extends Comparable<T>>{
     }
 
     //v replace u
-    private void transplant(Node<T> u, Node<T> v){
+    public void transplant(Node<T> u, Node<T> v){
         if(u.parent==null)
             root = v;
         else if(u==u.parent.left)
@@ -136,7 +136,7 @@ public class BinarySearchTree<T extends Comparable<T>>{
             v.parent = u.parent;
     }
 
-    private void delete(Node<T> u){
+    public void delete(Node<T> u){
         if(u.left==null)
             transplant(u, u.right);
         else if(u.right==null){
