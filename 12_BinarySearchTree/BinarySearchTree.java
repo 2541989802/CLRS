@@ -124,6 +124,7 @@ public class BinarySearchTree<T extends Compareble<T>>{
             p.right = z;
     }
 
+    //v replace u
     private void transplant(Node<T> u, Node<T> v){
         if(u.parent==null)
             root = v;
@@ -133,5 +134,23 @@ public class BinarySearchTree<T extends Compareble<T>>{
             u.parent.right = v;
         if(v!=null)
             v.parent = u.parent;
+    }
+
+    private void delete(Node<T> u){
+        if(u.left==null)
+            transplant(u, u.right);
+        else if(u.right==null){
+            transplant(u, u.left);
+        } else {
+            Node<T> y = min_h(u.right);
+            if(y.parent!=u){
+                transplant(y, y.right);
+                y.right = u.right;
+                y.right.parent = y;
+            }
+            transplant(u, y);
+            y.left = u.left;
+            y.left.parent = y;
+        }
     }
 }
