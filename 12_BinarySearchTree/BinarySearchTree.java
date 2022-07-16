@@ -34,6 +34,10 @@ public class BinarySearchTree<T extends Comparable<T>>{
         }
     }
 
+    public void treeWalk(){
+        treeWalk(root);
+    }
+
     public Node<T> search1_h(Node<T> node, T key){
         Node<T> other = new Node<T>(key,null);
         if(node==null)
@@ -104,10 +108,9 @@ public class BinarySearchTree<T extends Comparable<T>>{
         return res!=null?res.data:null;
     }
 
-    public void insert(T key){
+    public void insert(Node<T> z){
         Node<T> p = null;
         Node<T> x = root;
-        Node<T> z = new Node<T>(key,null);
         while(x!=null){
             p = x;
             if(x.compareTo(z)>=0)
@@ -124,6 +127,10 @@ public class BinarySearchTree<T extends Comparable<T>>{
             p.right = z;
     }
 
+    public void insert(T key){
+        insert(new Node<T>(key, null));
+    }
+
     //v replace u
     public void transplant(Node<T> u, Node<T> v){
         if(u.parent==null)
@@ -137,7 +144,9 @@ public class BinarySearchTree<T extends Comparable<T>>{
     }
 
     public void delete(Node<T> u){
-        if(u.left==null)
+        if(u==null)
+            return;
+        else if(u.left==null)
             transplant(u, u.right);
         else if(u.right==null){
             transplant(u, u.left);

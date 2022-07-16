@@ -13,7 +13,6 @@ public class Test{
         RedBlackTree<Integer> tree = new RedBlackTree<Integer>();
         tree.insert(1);
         System.out.print(tree.isBlack(1));
-        tree.setRoot(2);
         System.out.print(tree.isBlack(2));
         /*
         for(int i = 0; i < 100; i++){
