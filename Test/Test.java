@@ -11,19 +11,21 @@ import redblacktree.*;
 public class Test{
     public static void main(String[] args){
         RedBlackTree<Integer> tree = new RedBlackTree<Integer>();
-        tree.insert(1);
-        System.out.print(tree.isBlack(1));
-        System.out.print(tree.isBlack(2));
-        /*
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 1000; i++){
             tree.insert((int)(Math.random()*100));
         }
+        System.out.println("\npart 1:");
         Integer t = tree.min();
         while(t!=null){
             System.out.print(t+", ");
             t = tree.successor(t);
         }
-        */
+        System.out.println("\n"+tree.height());
+        for(int i = 0; i < 750; i++){
+            //tree.insert((int)(Math.random()*100));
+            tree.delete(tree.min());
+        }
+        System.out.println("\n"+tree.height());
     }
 
     public static int[] generate(int min, int max, int len){

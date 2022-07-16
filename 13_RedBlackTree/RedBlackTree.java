@@ -11,6 +11,18 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
         }
     }
 
+    public int height(BinarySearchTree<T>.Node<T> root){
+        if(root==null)
+            return 0;
+        int l = height(root.left);
+        int r = height(root.right);
+        return 1+(l>r?l:r);
+    }
+
+    public int height(){
+        return height(root);
+    }
+
     public void insert(T data){
         Node<T> node = new Node<T>(data, null, false);
         super.insert(node);
@@ -20,8 +32,8 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
     public void insertFixup(Node<T> node){
         while(!node.black && node.parent!=null && !((Node<T>)(node.parent)).black){
             if(node.parent==node.parent.parent.left){
-                if(node.parent.right!=null && !((Node<T>)(node.parent.right)).black){
-                    node = (Node<T>)(node.parent);
+                if(node.parent.parent.right!=null && !((Node<T>)(node.parent.parent.right)).black){
+                    node = (Node<T>)(node.parent.parent);
                     ((Node<T>)(node.left)).black = true;
                     ((Node<T>)(node.right)).black = true;
                     node.black = false;
@@ -35,8 +47,8 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
                     ((Node<T>)(node.right)).black = false;
                 }
             } else {
-                if(node.parent.left!=null && !((Node<T>)(node.parent.left)).black){
-                    node = (Node<T>)(node.parent);
+                if(node.parent.parent.left!=null && !((Node<T>)(node.parent.parent.left)).black){
+                    node = (Node<T>)(node.parent.parent);
                     ((Node<T>)(node.left)).black = true;
                     ((Node<T>)(node.right)).black = true;
                     node.black = false;
@@ -89,6 +101,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 
     public void deleteFixup(Node<T> db){
         Node<T> x, y, z, w;
+        Node<T> up = new Node<T>(null, null, false);
         while(db!=null && db.parent!=null && db.black){
             if(db==db.parent.left){
                 x = (Node<T>)db.parent;
@@ -103,6 +116,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
                     if(z.black&&w.black){
                         y.black = false;
                         db = x;
+                        up = x;
                     } else {
                         if(w.black){
                             z.black = true;
@@ -130,6 +144,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
                     if(z.black&&w.black){
                         y.black = false;
                         db = x;
+                        up = x;
                     } else {
                         if(w.black){
                             z.black = true;
@@ -166,6 +181,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
         }
         root.parent = x;
         root.right = y;
+        x.left = root;
         if(y!=null)
             y.parent = root;
     }
@@ -188,11 +204,17 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
         }
         root.parent = x;
         root.left = y;
+        x.right = root;
         if(y!=null)
             y.parent = root;
     }
 
-    public boolean isBlack(T key){
-        return ((Node<T>)search1_h(root, key)).black;
+    public T successor(T key){
+        BinarySearchTree<T>.Node<T> node = search2_h(root, key);
+        while(successor_h(node)!=null&&node.compareTo(successor_h(node))==0){
+            node = successor_h(node);
+        }
+        node = successor_h(node);
+        return node!=null?node.data:null;
     }
 }
