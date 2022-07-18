@@ -24,7 +24,10 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
     }
 
     public void insert(T data){
-        Node<T> node = new Node<T>(data, null, false);
+        insert(new Node<T>(data, null, false));
+    }
+    
+    public void insert(Node<T> node){
         super.insert(node);
         insertFixup(node);
     }
@@ -69,10 +72,10 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
             ((Node<T>)root).black = true;
     }
 
-    public void delete(Node<T> u){
+    public Node<T> delete(Node<T> u){
         Node<T> db = null;
         if(u==null)
-            return;
+            return null;
         else if(u.left==null){
             transplant(u.right, u);
             db = u.right==null?(Node<T>)(u.right):null;
@@ -97,6 +100,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
         }
         if(u.black&&db!=null)
             deleteFixup(db);
+        return db;
     }
 
     public void deleteFixup(Node<T> db){

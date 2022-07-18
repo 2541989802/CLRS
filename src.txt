@@ -17,6 +17,7 @@
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\11_HashTable\\UniversalHash.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\12_BinarySearchTree\\BinarySearchTree.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\13_RedBlackTree\\RedBlackTree.java" 
+"C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\14_AugmentingDataStructure\\OSIntervalTree.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\31_NumberTheoretic\\Euclid.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\31_NumberTheoretic\\ModExp.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\31_NumberTheoretic\\Prime.java" 
