@@ -7,12 +7,15 @@ import numbertheoretic.*;
 import hashtable.*;
 import binarysearchtree.*;
 import redblacktree.*;
+import augmentingdatastructure.*;
 
 public class Test{
     public static void main(String[] args){
-        RedBlackTree<Integer> tree = new RedBlackTree<Integer>();
-        for(int i = 0; i < 1000; i++){
-            tree.insert((int)(Math.random()*100));
+        OSIntervalTree<Integer> tree = new OSIntervalTree<Integer>();
+        for(int i = 0; i < 10; i++){
+            int t = (int)(Math.random()*100);
+            System.out.print(t+", ");
+            tree.insert(t);
         }
         System.out.println("\npart 1:");
         Integer t = tree.min();
@@ -21,11 +24,18 @@ public class Test{
             t = tree.successor(t);
         }
         System.out.println("\n"+tree.height());
-        for(int i = 0; i < 750; i++){
+        for(int i = 0; i < 10; i++){
+            System.out.print(tree.osSelect(i+1)+", ");
+        }
+        /*System.out.println("\n"+tree.height());
+        for(int i = 0; i < 900; i++){
             //tree.insert((int)(Math.random()*100));
             tree.delete(tree.min());
         }
         System.out.println("\n"+tree.height());
+        for(int i = 0; i < 100; i++){
+            System.out.print(tree.osSelect(i)+", ");
+        }*/
     }
 
     public static int[] generate(int min, int max, int len){

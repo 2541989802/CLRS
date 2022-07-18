@@ -14,13 +14,14 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
                 this.high = low;
             else if(low!=null&&low.compareTo(high)>0)
                 this.high = low;
-            this.size=1;
+            setMax();
+            setSize();
         }
 
         @SuppressWarnings("unchecked")
         public void setMax(){
-            T l = left!=null?((Node<T>)left).max:max;
-            T r = right!=null?((Node<T>)right).max:max;
+            T l = left!=null?((Node<T>)left).max:high;
+            T r = right!=null?((Node<T>)right).max:high;
             T m = null;
             if(l!=null){
                 if(l.compareTo(r)>=0)
@@ -37,10 +38,10 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
             }
             if(high!=null){
                 if(high.compareTo(m)>=0)
-                    m = max;
+                    m = high;
             } else if(m!=null){
                 if(m.compareTo(high)<0)
-                    m = max;
+                    m = high;
             }
             max = m;
         }
@@ -93,13 +94,15 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
 
     public void insert(Node<T> node){
         super.insert(node);
-        while(node.parent!=null){
+        while(node!=null){
+            node.setSize();
             node=(Node<T>)(node.parent);
-            node.size++;
         }
     }
 
-    public void leftRotate(Node<T> root){
+    @Override
+    public void leftRotate(RedBlackTree<T>.Node<T> ro){
+        Node<T> root = (Node<T>) ro;
         Node<T> old = (Node<T>)(root.right);
         root.setSize();
         root.setMax();
@@ -112,7 +115,9 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
         old.setMax();
     }
 
-    public void rightRotate(Node<T> root){
+    @Override
+    public void rightRotate(RedBlackTree<T>.Node<T> ro){
+        Node<T> root = (Node<T>)ro;
         Node<T> old = (Node<T>)(root.left);
         root.setSize();
         root.setMax();
@@ -155,18 +160,21 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
         while(node!=null&&r!=i){
             if(i < r){
                 node = (Node<T>)(node.left);
-                r -= (node.right!=null?((Node<T>)(node.right)).size:0)+1;
+                if(node!=null)
+                    r -= (node.right!=null?((Node<T>)(node.right)).size:0)+1;
             }
             else{
                 node = (Node<T>)(node.right);
-                r += (node.left!=null?((Node<T>)(node.left)).size:0)+1;
+                if(node!=null)
+                    r += (node.left!=null?((Node<T>)(node.left)).size:0)+1;
             }
         }
         return node;
     }
 
     public T osSelect(int i){
-        return osSelect2((Node<T>)root, i).data;
+        Node<T> res = osSelect2((Node<T>)root, i);
+        return res!=null?res.data:null;
     }
 
     public int osRank(Node<T> node){
