@@ -12,9 +12,9 @@ import augmentingdatastructure.*;
 public class Test{
     public static void main(String[] args){
         OSIntervalTree<Integer> tree = new OSIntervalTree<Integer>();
-        for(int i = 0; i < 10; i++){
-            int t = (int)(Math.random()*100);
-            System.out.print(t+", ");
+        for(int i = 0; i < 100; i++){
+            int t = i*23%100;//(int)(Math.random()*100);
+            //System.out.print(t+", ");
             tree.insert(t);
         }
         System.out.println("\npart 1:");
@@ -27,15 +27,15 @@ public class Test{
         for(int i = 0; i < 10; i++){
             System.out.print(tree.osSelect(i+1)+", ");
         }
-        /*System.out.println("\n"+tree.height());
-        for(int i = 0; i < 900; i++){
+        System.out.println("\n"+tree.height());
+        for(int i = 0; i < 90; i++){
             //tree.insert((int)(Math.random()*100));
             tree.delete(tree.min());
         }
         System.out.println("\n"+tree.height());
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < 12; i++){
             System.out.print(tree.osSelect(i)+", ");
-        }*/
+        }
     }
 
     public static int[] generate(int min, int max, int len){

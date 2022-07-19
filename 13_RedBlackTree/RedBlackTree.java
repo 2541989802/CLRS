@@ -105,7 +105,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 
     public void deleteFixup(Node<T> db){
         Node<T> x, y, z, w;
-        Node<T> up = new Node<T>(null, null, false);
+        //Node<T> up = new Node<T>(null, null, false);
         while(db!=null && db.parent!=null && db.black){
             if(db==db.parent.left){
                 x = (Node<T>)db.parent;
@@ -120,7 +120,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
                     if(z.black&&w.black){
                         y.black = false;
                         db = x;
-                        up = x;
+                        //up = x;
                     } else {
                         if(w.black){
                             z.black = true;
@@ -148,7 +148,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
                     if(z.black&&w.black){
                         y.black = false;
                         db = x;
-                        up = x;
+                        //up = x;
                     } else {
                         if(w.black){
                             z.black = true;
