@@ -57,9 +57,9 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
         if(n==null)
             return null;
         Node<T> oldp = (Node<T>)(n.parent);
-        Node<T> node = (Node<T>)(super.delete(n));
+        Node<T> node = (Node<T>)(super.delete(n).parent);
         System.out.println(node);
-        while(oldp!=null && oldp!=node.parent){
+        while(oldp!=null && oldp!=node){
             node.setSize();
             oldp.setMax();
             oldp=(Node<T>)(oldp.parent);

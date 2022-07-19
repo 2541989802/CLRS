@@ -134,12 +134,12 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
                     x.black = false;
                     leftRotate((Node<T>)(db.parent));
                 } else {
-                    if(z.black&&w.black){
+                    if((z==null||z.black)&&(w==null||w.black)){
                         y.black = false;
                         db = x;
                         //up = x;
                     } else {
-                        if(w.black){
+                        if(w==null||w.black){
                             z.black = true;
                             y.black = false;
                             rightRotate(y);
@@ -162,12 +162,12 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
                     x.black = false;
                     rightRotate((Node<T>)(db.parent));
                 } else {
-                    if(z.black&&w.black){
+                    if((z==null||z.black)&&(w==null||w.black)){
                         y.black = false;
                         db = x;
                         //up = x;
                     } else {
-                        if(w.black){
+                        if((w==null||w.black)){
                             z.black = true;
                             y.black = false;
                             leftRotate(y);
@@ -245,7 +245,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
         if(node==null)
             return;
         blackRed_h((Node<T>)(node.left),i+1);
-        System.out.print("("+node.black+":"+i+"), ");
+        System.out.print("("+node.data+":"+node.black+":"+i+"), ");
         blackRed_h((Node<T>)(node.right),i+1);
     }
 
