@@ -1,32 +1,26 @@
 package redblacktree;
 
-import binarysearchtree.*;
+import binarysearchtree.BinarySearchTree;
+import redblacktree.Node;
 
 public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
-    public class Node<T extends Comparable<T>> extends BinarySearchTree<T>.Node<T>{
-        public boolean black = false;
-        public Node(T key, Node<T> parent, boolean black){
-            super(key, parent);
-            this.black = black;
-        }
-    }
 
-    public int height(BinarySearchTree<T>.Node<T> root){
+    public int height(Node<T> root){
         if(root==null)
             return 0;
-        int l = height(root.left);
-        int r = height(root.right);
+        int l = height((Node<T>)(root.left));
+        int r = height((Node<T>)(root.right));
         return 1+(l>r?l:r);
     }
 
     public int height(){
-        return height(root);
+        return height((Node<T>)root);
     }
 
     public void insert(T data){
         insert(new Node<T>(data, null, false));
     }
-    
+
     public void insert(Node<T> node){
         super.insert(node);
         insertFixup(node);
@@ -72,18 +66,24 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
             ((Node<T>)root).black = true;
     }
 
-    public Node<T> delete(Node<T> u){
+    public void delete(T key){
+        delete((Node<T>)search2_h(root, key));
+    }
+
+    public binarysearchtree.Node<T> delete(Node<T> n){
+        System.out.println("RBtree");
+        Node<T> u = (Node<T>)n;
         Node<T> db = null;
-        Node<T> dbp = u;
+        Node<T> dbp = (Node<T>)(u.parent);
         if(u==null)
             return null;
         else if(u.left==null){
-            transplant(u.right, u);
-            db = u.right==null?(Node<T>)(u.right):null;
+            db = u.right!=null?(Node<T>)(u.right):null;
+            transplant(u, u.right);
         }
         else if(u.right==null){
-            transplant(u.left, u);
             db = u.left!=null?(Node<T>)(u.left):null;
+            transplant(u, u.left);
         } else {
             Node<T> y = (Node<T>)min_h(u.right);
             db = y.right!=null?(Node<T>)(y.right):null;
@@ -102,8 +102,19 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
         }
         if(u.black&&db!=null)
             deleteFixup(db);
-        if(u.black==true&&db==null){
-            ;
+        else if(u.black&&db==null){
+            db = new Node<T>(null,dbp,true);
+            if(dbp.left==null)
+                dbp.left = db;
+            else if(dbp.right==null)
+                dbp.right = db;
+            deleteFixup(db);
+            if(dbp.left==db)
+                dbp.left = null;
+            else if(dbp.right==db)
+                dbp.right = null;
+        } else{
+            db=dbp;
         }
         return db;
     }
@@ -112,6 +123,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
         Node<T> x, y, z, w;
         //Node<T> up = new Node<T>(null, null, false);
         while(db!=null && db.parent!=null && db.black){
+            System.out.println(db.parent.data);
             if(db==db.parent.left){
                 x = (Node<T>)db.parent;
                 y = (Node<T>)x.right;
@@ -170,6 +182,8 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
                 }
             }
         }
+        if(db!=null)
+            db.black = true;
     }
 
     public void leftRotate(Node<T> root){
@@ -219,11 +233,25 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
     }
 
     public T successor(T key){
-        BinarySearchTree<T>.Node<T> node = search2_h(root, key);
+        binarysearchtree.Node<T> node = search2_h(root, key);
         while(successor_h(node)!=null&&node.compareTo(successor_h(node))==0){
             node = successor_h(node);
         }
         node = successor_h(node);
         return node!=null?node.data:null;
+    }
+
+    public void blackRed_h(Node<T> node, int i){
+        if(node==null)
+            return;
+        blackRed_h((Node<T>)(node.left),i+1);
+        System.out.print("("+node.black+":"+i+"), ");
+        blackRed_h((Node<T>)(node.right),i+1);
+    }
+
+    public void blackRed(){
+        System.out.println("");
+        blackRed_h((Node<T>)root,1);
+        System.out.println("");
     }
 }

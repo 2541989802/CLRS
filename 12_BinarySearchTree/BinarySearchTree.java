@@ -1,29 +1,8 @@
 package binarysearchtree;
 
+import binarysearchtree.Node;
+
 public class BinarySearchTree<T extends Comparable<T>>{
-    public class Node<T extends Comparable<T>> implements Comparable<Node<T>>{
-        public T data;
-        public Node<T> parent;
-        public Node<T> left;
-        public Node<T> right;
-
-        public Node(T data, Node<T> parent){
-            this.data = data;
-            this.parent = parent;
-        }
-
-        public int compareTo(Node<T> o){
-            if(o==null)
-                throw new RuntimeException("BinarySearchTree<T>.Node<T>.compareTo(): recieve a null object, shouldn't happen in code");
-            if(data!=null)
-                return data.compareTo(o.data);
-            if(o.data!=null)
-                return -1*o.data.compareTo(data);
-            else
-                return 0;
-        }
-    }
-
     public Node<T> root;
 
     public void treeWalk(Node<T> root){
@@ -143,9 +122,10 @@ public class BinarySearchTree<T extends Comparable<T>>{
             v.parent = u.parent;
     }
 
-    public void delete(Node<T> u){
+    public Node<T> delete(Node<T> u){
+        System.out.println("Btree");
         if(u==null)
-            return;
+            return u;
         else if(u.left==null)
             transplant(u, u.right);
         else if(u.right==null){
@@ -161,6 +141,7 @@ public class BinarySearchTree<T extends Comparable<T>>{
             y.left = u.left;
             y.left.parent = y;
         }
+        return u;
     }
 
     public void delete(T key){

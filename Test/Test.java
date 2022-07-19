@@ -29,9 +29,11 @@ public class Test{
         }
         System.out.println("\n"+tree.height());
         for(int i = 0; i < 5; i++){
+            tree.blackRed();
             //tree.insert((int)(Math.random()*100));
             tree.delete(tree.min());
         }
+        tree.blackRed();
         System.out.println("\n"+tree.height());
         for(int i = 0; i < 7; i++){
             System.out.print(tree.osSelect(i)+", ");
