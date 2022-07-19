@@ -133,7 +133,7 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
     public void delete(Node<T> u){
         Node<T> oldp = (Node<T>)(u.parent);
         Node<T> node = (Node<T>)(super.delete(u));
-        while(oldp!=null){
+        while(oldp!=null && oldp!=node.parent){
             oldp.setSize();
             oldp.setMax();
             oldp=(Node<T>)(oldp.parent);

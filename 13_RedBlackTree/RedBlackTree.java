@@ -74,6 +74,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
 
     public Node<T> delete(Node<T> u){
         Node<T> db = null;
+        Node<T> dbp = u;
         if(u==null)
             return null;
         else if(u.left==null){
@@ -86,6 +87,7 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
         } else {
             Node<T> y = (Node<T>)min_h(u.right);
             db = y.right!=null?(Node<T>)(y.right):null;
+            dbp = (Node<T>)(y.parent);
             if(y.parent!=u){
                 transplant(y, y.right);
                 y.right = u.right;
@@ -100,6 +102,9 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
         }
         if(u.black&&db!=null)
             deleteFixup(db);
+        if(u.black==true&&db==null){
+            ;
+        }
         return db;
     }
 
