@@ -11,11 +11,12 @@ import augmentingdatastructure.*;
 
 public class Test{
     public static void main(String[] args){
-        OSIntervalTree<Integer> tree = new OSIntervalTree<Integer>();
-        for(int i = 0; i < 10; i++){
-            int t = i*3%10;//(int)(Math.random()*100);
+        RedBlackTree<Integer> tree = new RedBlackTree<Integer>();
+        for(int i = 0; i < 50; i++){
+            int t = (i*23+13)%100;//(int)(Math.random()*100);
             System.out.print(t+", ");
             tree.insert(t);
+            tree.check();
         }
         System.out.println("\npart 1:");
         Integer t = tree.min();
@@ -23,21 +24,30 @@ public class Test{
             System.out.print(t+", ");
             t = tree.successor(t);
         }
-        System.out.println("\n"+tree.height());
-        for(int i = 0; i < 10; i++){
+        System.out.println("\npart 2:");
+        for(int i = 0; i < 33; i++){
+            System.out.print(i+",");
+            tree.delete((i*23+13)%100);
+            tree.check();
+        }
+        /*
+        //System.out.println("\n"+tree.height());
+        for(int i = 0; i < 50; i++){
             System.out.print(tree.osSelect(i+1)+", ");
         }
-        System.out.println("\n"+tree.height());
-        for(int i = 0; i < 5; i++){
-            tree.blackRed();
+        //System.out.println("\n"+tree.height());
+        for(int i = 0; i < 10; i++){
+            tree.nodeSize();
             //tree.insert((int)(Math.random()*100));
-            tree.delete(tree.min());
+            System.out.println(tree.size+":"+(50-i));
+            tree.delete(tree.osSelect(1+(int)(tree.size*Math.random())));
+            //tree.check();
         }
-        tree.blackRed();
+        tree.nodeSize();
         System.out.println("\n"+tree.height());
-        for(int i = 0; i < 7; i++){
+        for(int i = 0; i < 12; i++){
             System.out.print(tree.osSelect(i)+", ");
-        }
+        }*/
     }
 
     public static int[] generate(int min, int max, int len){

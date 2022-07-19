@@ -17,8 +17,8 @@ public class Node<T extends Comparable<T>> extends redblacktree.Node<T>{
 
     @SuppressWarnings("unchecked")
     public void setMax(){
-        T l = left!=null?((Node<T>)left).max:high;
-        T r = right!=null?((Node<T>)right).max:high;
+        T l = (left!=null&&left instanceof Node)?((Node<T>)left).max:high;
+        T r = (right!=null&&right instanceof Node)?((Node<T>)right).max:high;
         T m = null;
         if(l!=null){
             if(l.compareTo(r)>=0)
@@ -46,7 +46,7 @@ public class Node<T extends Comparable<T>> extends redblacktree.Node<T>{
 
     @SuppressWarnings("unchecked")
     public void setSize(){
-        size = (left!=null?((Node<T>)left).size:0)+(right!=null?((Node<T>)right).size:0)+1;
+        size = ((left!=null&&left instanceof Node)?((Node<T>)left).size:0)+((right!=null&&right instanceof Node)?((Node<T>)right).size:0)+1;
     }
 
     public int insect(T i){

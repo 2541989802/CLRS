@@ -4,6 +4,7 @@ import binarysearchtree.Node;
 
 public class BinarySearchTree<T extends Comparable<T>>{
     public Node<T> root;
+    public int size;
 
     public void treeWalk(Node<T> root){
         if(root!=null){
@@ -104,6 +105,7 @@ public class BinarySearchTree<T extends Comparable<T>>{
             p.left = z;
         else
             p.right = z;
+        size++;
     }
 
     public void insert(T key){
@@ -123,7 +125,6 @@ public class BinarySearchTree<T extends Comparable<T>>{
     }
 
     public Node<T> delete(Node<T> u){
-        System.out.println("Btree");
         if(u==null)
             return u;
         else if(u.left==null)
@@ -141,6 +142,7 @@ public class BinarySearchTree<T extends Comparable<T>>{
             y.left = u.left;
             y.left.parent = y;
         }
+        size--;
         return u;
     }
 

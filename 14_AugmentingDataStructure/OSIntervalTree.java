@@ -20,8 +20,12 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
         }
     }
 
-    public void leftRotate(Node<T> ro){
-        Node<T> root = (Node<T>) ro;
+    @Override
+    public void leftRotate(redblacktree.Node<T> node){
+            leftRotate((Node<T>)node);
+    }
+
+    public void leftRotate(Node<T> root){
         Node<T> old = (Node<T>)(root.right);
         root.setSize();
         root.setMax();
@@ -34,8 +38,15 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
         old.setMax();
     }
 
-    public void rightRotate(Node<T> ro){
-        Node<T> root = (Node<T>)ro;
+    @Override
+    public void rightRotate(redblacktree.Node<T> node){
+        if(node instanceof Node)
+            rightRotate((Node<T>)node);
+        else
+            super.rightRotate(node);
+    }
+
+    public void rightRotate(Node<T> root){
         Node<T> old = (Node<T>)(root.left);
         root.setSize();
         root.setMax();
@@ -53,21 +64,19 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
     }
 
     public Node<T> delete(Node<T> n){
-        System.out.println("Atree");
         if(n==null)
             return null;
         Node<T> oldp = (Node<T>)(n.parent);
         Node<T> node = (Node<T>)(super.delete(n).parent);
-        System.out.println(node);
-        while(oldp!=null && oldp!=node){
-            node.setSize();
-            oldp.setMax();
-            oldp=(Node<T>)(oldp.parent);
-        }
         while(node!=null&&node!=oldp){
             node.setSize();
             node.setMax();
             node=(Node<T>)(node.parent);
+        }
+        while(oldp!=null){
+            oldp.setSize();
+            oldp.setMax();
+            oldp=(Node<T>)(oldp.parent);
         }
         return (Node<T>)n;
     }
@@ -125,5 +134,19 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
                 node = (Node<T>)(node.left);
         }
         return node;
+    }
+
+    public void nodeSize_h(Node<T> node, int i){
+        if(node==null)
+            return;
+        nodeSize_h((Node<T>)(node.left),i+1);
+        System.out.print("("+node.data+":"+((Node<T>)node).size+":"+i+"), ");
+        nodeSize_h((Node<T>)(node.right),i+1);
+    }
+
+    public void nodeSize(){
+        System.out.println("");
+        nodeSize_h((Node<T>)root, 1);
+        System.out.println("");
     }
 }
