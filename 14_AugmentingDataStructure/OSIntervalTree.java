@@ -16,13 +16,17 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
         super.insert(node);
         while(node!=null){
             node.setSize();
+            node.setMax();
             node=(Node<T>)(node.parent);
         }
     }
 
     @Override
     public void leftRotate(redblacktree.Node<T> node){
+        if(node instanceof Node)
             leftRotate((Node<T>)node);
+        else
+            super.leftRotate(node);
     }
 
     public void leftRotate(Node<T> root){
@@ -31,9 +35,9 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
         root.setMax();
         super.leftRotate(root);
         if(old!=null){
-            old.size = root.size;
-            root.setSize();
+            old.setSize();
         }
+        root.setSize();
         root.setMax();
         old.setMax();
     }
@@ -52,9 +56,9 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
         root.setMax();
         super.rightRotate(root);
         if(old!=null){
-            old.size = root.size;
-            root.setSize();
+            old.setSize();
         }
+        root.setSize();
         root.setMax();
         old.setMax();
     }
@@ -67,7 +71,8 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
         if(n==null)
             return null;
         Node<T> oldp = (Node<T>)(n.parent);
-        Node<T> node = (Node<T>)(super.delete(n).parent);
+        redblacktree.Node<T> t = super.delete(n);
+        Node<T> node = (t!=null&&!(t instanceof Node))?(Node<T>)(t.parent):(Node<T>)t;
         while(node!=null&&node!=oldp){
             node.setSize();
             node.setMax();
@@ -148,5 +153,74 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
         System.out.println("");
         nodeSize_h((Node<T>)root, 1);
         System.out.println("");
+    }
+
+    public void nodeMax_h(Node<T> node, int i){
+        if(node==null)
+            return;
+        nodeMax_h((Node<T>)(node.left),i+1);
+        System.out.print("("+node.data+":"+node.high+":"+((Node<T>)node).max+":"+i+"), ");
+        nodeMax_h((Node<T>)(node.right),i+1);
+    }
+
+    public void nodeMax(){
+        System.out.println("");
+        nodeMax_h((Node<T>)root, 1);
+        System.out.println("");
+    }
+
+    public boolean check(){
+        boolean res1 = super.check();
+        if(!res1)
+            System.out.print("RED BLACK FAILURE, ");
+        boolean res2 = (this.check_h1((Node<T>)root)==1);
+        if(!res2)
+            System.out.print("SIZE FAILURE, ");
+        boolean res3 = (this.check_h2((Node<T>)root)==1);
+        if(!res3)
+            System.out.print("MAX FAILURE, ");
+        boolean res = res1&&res2&&res3;
+        if(!res)
+            System.out.println("");
+        return res;
+    }
+
+    public int check_h1(Node<T> node){
+        if(node==null)
+            return 1;
+        int l = node.left==null?0:((Node<T>)(node.left)).size;
+        int r = node.right==null?0:((Node<T>)(node.right)).size;
+        return (((l+r+1)==node.size)&&check_h1((Node<T>)(node.left))==1&&check_h1((Node<T>)(node.right))==1)?1:0;
+    }
+
+    public int check_h2(Node<T> node){
+        if(node==null)
+            return 1;
+        T l = (node.left!=null)?((Node<T>)(node.left)).max:node.high;
+        T r = (node.right!=null)?((Node<T>)(node.right)).max:node.high;
+        T m = null;
+        if(l!=null){
+            if(l.compareTo(r)>=0)
+                m = l;
+            else
+                m = r;
+        } else if(r!=null){
+            if(r.compareTo(l)>=0)
+                m = r;
+            else
+                m = l;
+        } else {
+            m = null;
+        }
+        if(node.high!=null){
+            if(node.high.compareTo(m)>=0)
+                m = node.high;
+        } else if(m!=null){
+            if(m.compareTo(node.high)<0)
+                m = node.high;
+        }
+        if((m==null&&node.max==null)||(m!=null&&m.compareTo(node.max)==0)||(node.max!=null&&node.max.compareTo(m)==0))
+            return (check_h2((Node<T>)(node.left))+check_h2((Node<T>)(node.right))==2)?1:0;
+        return -1;
     }
 }
