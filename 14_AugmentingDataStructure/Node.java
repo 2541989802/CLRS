@@ -1,9 +1,9 @@
 package augmentingdatastructure;
 
 public class Node<T extends Comparable<T>> extends redblacktree.Node<T>{
-    int size;
-    T high;
-    T max;
+    public int size;
+    public T high;
+    public T max;
     public Node(T low, T high, Node<T> parent, boolean black){
         super(low, parent, black);
         this.high = high;
@@ -51,33 +51,22 @@ public class Node<T extends Comparable<T>> extends redblacktree.Node<T>{
 
     public int insect(T i){
         if(i!=null){
-            if(i.compareTo(data)>=0&&i.compareTo(max)<=0)
+            if(i.compareTo(data)>=0&&i.compareTo(high)<=0)
                 return 0;
             else if(i.compareTo(max)>0)
                 return 1;
             else
                 return -1;
         }
-        else if(data!=null&&max!=null){
-            if(data.compareTo(i)<=0&&max.compareTo(i)>=0)
+        else if(data!=null&&high!=null){
+            if(data.compareTo(i)<=0&&high.compareTo(i)>=0)
                 return 0;
-            else if(max.compareTo(i)<0)
+            else if(max!=null&&max.compareTo(i)<0)
                 return 1;
             else
                 return -1;
         }
-        else if(max!=null){
-            if(max.compareTo(i)>=0)
-                return 0;
-            else
-                return 1;
-        }
-        else if(data!=null){
-            if(data.compareTo(i)<=0)
-                return 0;
-            else
-                return -1;
-        }
-        return 0;
+        else
+            return 0;
     }
 }

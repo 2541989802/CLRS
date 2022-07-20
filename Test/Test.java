@@ -12,37 +12,22 @@ import augmentingdatastructure.*;
 public class Test{
     public static void main(String[] args){
         OSIntervalTree<Integer> tree = new OSIntervalTree<Integer>();
-        for(int i = 0; i < 100; i++){
-            int t1 = (i*29+17)%100;
-            int t2 = ((t1*17+13)%50)+t1;
+        for(int i = 0; i < 10; i++){
+            int t1 = (int)(100*Math.random()*29+17)%100;
+            int t2 = (int)((50*Math.random()*17+13)%50)+t1;
             System.out.print("("+t1+":"+t2+"), ");
             tree.insert(t1, t2);
             if(!tree.check())
                 throw new RuntimeException("TREE FAILURE");
         }
         tree.nodeMax();
-        System.out.println("\npart 1:");
-        Integer t = tree.min();
-        while(t!=null){
-            System.out.print(t+", ");
-            t = tree.successor(t);
-        }
-        //System.out.println("\n"+tree.height());
-        for(int i = 0; i < 100; i++){
-            System.out.print(tree.osSelect(i+1)+", ");
-        }
-        //System.out.println("\n"+tree.height());
-        for(int i = 0; i < 90; i++){
-            //tree.insert((int)(Math.random()*100));
-            System.out.println(tree.size+":"+(100-i));
-            tree.delete(tree.osSelect(1+(int)(tree.size*Math.random())));
-            if(!tree.check())
-                throw new RuntimeException("TREE FAILURE");
-            //tree.check();
-        }
-        System.out.println("\n"+tree.height());
-        for(int i = 0; i < 12; i++){
-            System.out.print(tree.osSelect(i)+", ");
+        for(int i = 0; i < 10; i++){
+            int j = (int)(150*Math.random());
+            augmentingdatastructure.Node<Integer> n = tree.intervalSearch(j);
+            if(n==null)
+                System.out.println(j+":"+n+", ");
+            else
+                System.out.println(j+":("+n.data+":"+n.high+"), ");
         }
     }
 

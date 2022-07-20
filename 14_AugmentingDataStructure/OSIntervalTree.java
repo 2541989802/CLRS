@@ -132,11 +132,11 @@ public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
 
     public Node<T> intervalSearch(T i){
         Node<T> node = (Node<T>)root;
-        while(node.insect(i)!=0){
-            if(node.insect(i)>0)
-                node = (Node<T>)(node.right);
-            else
+        while(node!=null&&node.insect(i)!=0){
+            if(node.left!=null&&((Node<T>)(node.left)).insect(i)<=0)
                 node = (Node<T>)(node.left);
+            else
+                node = (Node<T>)(node.right);
         }
         return node;
     }
