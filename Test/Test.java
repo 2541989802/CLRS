@@ -12,21 +12,20 @@ import dynamicprogramming.*;
 
 public class Test{
     public static void main(String[] args){
-        CutRod cr = new CutRod();
-        double[] db = new double[10];
-        for(int i=0; i<db.length; i++)
-            db[i] = (int)(Math.random()*10);
+        int[] mn = new int[10];
+        for(int i = 0; i < mn.length; i++){
+            mn[i] = (int)(Math.random()*10)+1;
+            System.out.print(mn[i]+", ");
+        }
         System.out.println("");
-        for(double d : db)
-            System.out.print((int)d+", ");
-        System.out.println("");
-        for(int i=0; i<=db.length*2; i++)
-            System.out.print((int)cr.bottomup(db,i)+", ");
-        System.out.println("");
-        int[] cut = cr.extendsBottomup(db, db.length*2);
-        for(int i=0; i<=db.length*2; i++)
-            System.out.print(cut[i]+", ");
-        System.out.println("");
+        MatrixChain m = new MatrixChain();
+        int[][] res=m.order(mn);
+        for(int i=0; i<res.length; i++){
+            for(int j=0; j<res[0].length; j++){
+                System.out.print(res[i][j]+", ");
+            }
+            System.out.println("");
+        }
     }
 
     public static int[] generate(int min, int max, int len){

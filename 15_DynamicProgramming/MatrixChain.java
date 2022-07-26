@@ -7,13 +7,14 @@ public class MatrixChain{
         int t = 0;
         for(int i=0; i<mn.length-1; i++){
             for(int j=0; j<mn.length-1-i; j++){
+                cost[j][j+i]=-1;
                 if(i==0){
                     cost[j][j+i]=0;
-                    res[j][j+i]=j+i;
+                    res[j][j+i]=1;
                 }
                 for(int k=0; k<i; k++){
-                    t=mn[j]*mn[k+j+1]*mn[i+j+1]+cost[j][j+k]+cost[j+k][i+j];
-                    if(t<cost[j][j+i]){
+                    t=mn[j]*mn[k+j+1]*mn[i+j+1]+cost[j][j+k]+cost[j+k+1][i+j];
+                    if(t<cost[j][j+i]||cost[j][j+i]==-1){
                         cost[j][j+i]=t;
                         res[j][j+i]=k+1;
                     }
