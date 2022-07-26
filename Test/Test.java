@@ -12,14 +12,21 @@ import dynamicprogramming.*;
 
 public class Test{
     public static void main(String[] args){
-        int[] mn = new int[10];
-        for(int i = 0; i < mn.length; i++){
+        int[] mn = {30,35,15,5,10,20,25};//new int[10];
+        /*for(int i = 0; i < mn.length; i++){
             mn[i] = (int)(Math.random()*10)+1;
             System.out.print(mn[i]+", ");
-        }
+        }*/
         System.out.println("");
         MatrixChain m = new MatrixChain();
         int[][] res=m.order(mn);
+        for(int i=0; i<res.length; i++){
+            for(int j=0; j<res[0].length; j++){
+                System.out.print(res[i][j]+", ");
+            }
+            System.out.println("");
+        }
+        res=m.cost(mn);
         for(int i=0; i<res.length; i++){
             for(int j=0; j<res[0].length; j++){
                 System.out.print(res[i][j]+", ");
