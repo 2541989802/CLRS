@@ -8,27 +8,25 @@ import hashtable.*;
 import binarysearchtree.*;
 import redblacktree.*;
 import augmentingdatastructure.*;
+import dynamicprogramming.*;
 
 public class Test{
     public static void main(String[] args){
-        OSIntervalTree<Integer> tree = new OSIntervalTree<Integer>();
-        for(int i = 0; i < 10; i++){
-            int t1 = (int)(100*Math.random()*29+17)%100;
-            int t2 = (int)((50*Math.random()*17+13)%50)+t1;
-            System.out.print("("+t1+":"+t2+"), ");
-            tree.insert(t1, t2);
-            if(!tree.check())
-                throw new RuntimeException("TREE FAILURE");
-        }
-        tree.nodeMax();
-        for(int i = 0; i < 10; i++){
-            int j = (int)(150*Math.random());
-            augmentingdatastructure.Node<Integer> n = tree.intervalSearch(j);
-            if(n==null)
-                System.out.println(j+":"+n+", ");
-            else
-                System.out.println(j+":("+n.data+":"+n.high+"), ");
-        }
+        CutRod cr = new CutRod();
+        double[] db = new double[10];
+        for(int i=0; i<db.length; i++)
+            db[i] = (int)(Math.random()*10);
+        System.out.println("");
+        for(double d : db)
+            System.out.print((int)d+", ");
+        System.out.println("");
+        for(int i=0; i<=db.length*2; i++)
+            System.out.print((int)cr.bottomup(db,i)+", ");
+        System.out.println("");
+        int[] cut = cr.extendsBottomup(db, db.length*2);
+        for(int i=0; i<=db.length*2; i++)
+            System.out.print(cut[i]+", ");
+        System.out.println("");
     }
 
     public static int[] generate(int min, int max, int len){
