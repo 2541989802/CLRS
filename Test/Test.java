@@ -9,25 +9,17 @@ import binarysearchtree.*;
 import redblacktree.*;
 import augmentingdatastructure.*;
 import dynamicprogramming.*;
+import greedyalgorith.*;
 
 public class Test{
     public static void main(String[] args){
-        double[] p={0.15, 0.1, 0.05, 0.1, 0.2};
-        double[] q={0.05, 0.1, 0.05, 0.05, 0.05, 0.1};
-        OptimalBST bst = new OptimalBST();
-        int[][] root = bst.root(p,q);
-        double[][] expect = bst.expect(p,q);
-        for(int i=0; i<root.length; i++){
-            for(int j=0; j<root[0].length; j++)
-                System.out.print(root[i][j]+", ");
-            System.out.println("");
+        ActivitySelection as = new ActivitySelection();
+        int[] s = {1,3,0,5,3,5, 6, 8, 6, 2,12};
+        int[] f = {4,5,6,7,9,9,10,11,12,14,16};
+        for(int i:as.select(s, f)){
+            System.out.print(i+", ");
         }
         System.out.println("");
-        for(int i=0; i<expect.length; i++){
-            for(int j=0; j<expect[0].length; j++)
-                System.out.print(String.format("%.2f, ",expect[i][j]));
-            System.out.println("");
-        }
     }
 
     public static int[] generate(int min, int max, int len){
