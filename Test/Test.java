@@ -13,11 +13,13 @@ import dynamicprogramming.*;
 public class Test{
     public static void main(String[] args){
         String a="aszdvzgzrewtrg";
-        String b="azgdbatergzzg";
+        String b="asifdvupbguifdspsa";
         LongestCommonString lcs = new LongestCommonString();
         System.out.println(a);
         System.out.println(b);
         System.out.println(lcs.lcs(a,b));
+        System.out.println(lcs.palindrome(a));
+        System.out.println(lcs.palindrome(b));
     }
 
     public static int[] generate(int min, int max, int len){
