@@ -30,7 +30,7 @@ public class LongestCommonString{
                         j=-1;
                     }
                 } else {
-                        if(len[i][j]==len[i-1][j-1]+1){
+                        if(len[i][j]==len[i-1][j-1]+1&&a.charAt(i)==b.charAt(j)){
                             res=a.charAt(i)+res;
                             i--;
                             j--;

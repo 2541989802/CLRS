@@ -12,14 +12,22 @@ import dynamicprogramming.*;
 
 public class Test{
     public static void main(String[] args){
-        String a="aszdvzgzrewtrg";
-        String b="asifdvupbguifdspsa";
-        LongestCommonString lcs = new LongestCommonString();
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println(lcs.lcs(a,b));
-        System.out.println(lcs.palindrome(a));
-        System.out.println(lcs.palindrome(b));
+        double[] p={0.15, 0.1, 0.05, 0.1, 0.2};
+        double[] q={0.05, 0.1, 0.05, 0.05, 0.05, 0.1};
+        OptimalBST bst = new OptimalBST();
+        int[][] root = bst.root(p,q);
+        double[][] expect = bst.expect(p,q);
+        for(int i=0; i<root.length; i++){
+            for(int j=0; j<root[0].length; j++)
+                System.out.print(root[i][j]+", ");
+            System.out.println("");
+        }
+        System.out.println("");
+        for(int i=0; i<expect.length; i++){
+            for(int j=0; j<expect[0].length; j++)
+                System.out.print(String.format("%.2f, ",expect[i][j]));
+            System.out.println("");
+        }
     }
 
     public static int[] generate(int min, int max, int len){
