@@ -14,11 +14,18 @@ import greedyalgorithm.*;
 
 public class Test{
     public static void main(String[] args){
-        double[] dbs = {5, 9, 12, 13, 16, 45};
-        String[] ns = {"f", "e", "c", "b", "d", "a"};
-        Haffman ha = new Haffman();
-        ha.build(dbs, ns);
-        ha.print();
+        int[] d={ 4, 2, 4, 3, 1, 4, 6};
+        int[] w={70,60,50,40,30,20,10};
+        UnitTaskScheduling uts = new UnitTaskScheduling();
+        for(int i: d)
+            System.out.print(i+", ");
+        System.out.println("");
+        for(int i: w)
+            System.out.print(i+", ");
+        System.out.println("");
+        for(int i: uts.schedule(d,w))
+            System.out.print(i+", ");
+        System.out.println("");
     }
 
     public static int[] generate(int min, int max, int len){
