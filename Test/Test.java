@@ -2,6 +2,7 @@ package test;
 import lineartimesorting.*;
 import selection.*;
 import quicksort.*;
+import heapsort.*;
 import basicdatastructure.*;
 import numbertheoretic.*;
 import hashtable.*;
@@ -9,17 +10,15 @@ import binarysearchtree.*;
 import redblacktree.*;
 import augmentingdatastructure.*;
 import dynamicprogramming.*;
-import greedyalgorith.*;
+import greedyalgorithm.*;
 
 public class Test{
     public static void main(String[] args){
-        ActivitySelection as = new ActivitySelection();
-        int[] s = {1,3,0,5,3,5, 6, 8, 6, 2,12};
-        int[] f = {4,5,6,7,9,9,10,11,12,14,16};
-        for(int i:as.select(s, f)){
-            System.out.print(i+", ");
-        }
-        System.out.println("");
+        double[] dbs = {5, 9, 12, 13, 16, 45};
+        String[] ns = {"f", "e", "c", "b", "d", "a"};
+        Haffman ha = new Haffman();
+        ha.build(dbs, ns);
+        ha.print();
     }
 
     public static int[] generate(int min, int max, int len){

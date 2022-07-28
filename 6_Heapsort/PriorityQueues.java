@@ -27,8 +27,11 @@ public class PriorityQueues<T extends Comparable<T>> extends MaxHeap<T>{
         if(key == null && heap[i] == null){
             return;
         }
-        if((heap[i] != null && heap[i].compareTo(key) > 0) || (key != null && key.compareTo(heap[i]) < 0)){
-            throw new RuntimeException("PriorityQueues.increaseKey(): new key is smaller than old key");
+        if(maxheap &&(heap[i] != null && heap[i].compareTo(key) > 0) || (key != null && key.compareTo(heap[i]) < 0)){
+            throw new RuntimeException("PriorityQueues.increaseKey(): new key is smaller than old key when maxheap is true");
+        }
+        if(!maxheap &&(heap[i] != null && heap[i].compareTo(key) < 0) || (key != null && key.compareTo(heap[i]) > 0)){
+            throw new RuntimeException("PriorityQueues.increaseKey(): new key is greater than old key when maxheap is false");
         }
         heap[i] = key;
         T t = heap[i];

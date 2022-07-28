@@ -1,4 +1,4 @@
-package greedyalgorith;
+package greedyalgorithm;
 
 import basicdatastructure.*;
 import quicksort.*;

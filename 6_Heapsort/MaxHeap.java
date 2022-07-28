@@ -2,7 +2,7 @@ package heapsort;
 
 public class MaxHeap<T extends Comparable<T>> extends ArrayHeap<T>{
     public int size = 0;
-    public boolean maxheap = false;
+    public boolean maxheap = true;
 
     public MaxHeap(T[] heap){
         /*super((T[])(new Oject[heap.length]));
@@ -17,11 +17,23 @@ public class MaxHeap<T extends Comparable<T>> extends ArrayHeap<T>{
         int l = left(i);
         int r = right(i);
         int max = i;
-        if(l < size && l >= 0 && heap[l].compareTo(heap[max]) > 0){
-            max = l;
+        if(l < size && l >= 0){
+            if(heap[l].compareTo(heap[max]) > 0){
+                if(maxheap)
+                    max = l;
+            }else{
+                if(!maxheap)
+                    max = l;
+            }
         }
-        if(r < size && r >= 0 && heap[r].compareTo(heap[max]) > 0){
-            max = r;
+        if(r < size && r >= 0){
+            if(heap[r].compareTo(heap[max]) > 0){
+                if(maxheap)
+                    max = r;
+            }else{
+                if(!maxheap)
+                    max = r;
+            }
         }
         if(max != i){
             T t = heap[i];
