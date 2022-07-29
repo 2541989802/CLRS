@@ -14,18 +14,17 @@ import greedyalgorithm.*;
 
 public class Test{
     public static void main(String[] args){
-        int[] d={ 4, 2, 4, 3, 1, 4, 6};
-        int[] w={70,60,50,40,30,20,10};
-        UnitTaskScheduling uts = new UnitTaskScheduling();
-        for(int i: d)
-            System.out.print(i+", ");
-        System.out.println("");
-        for(int i: w)
-            System.out.print(i+", ");
-        System.out.println("");
-        for(int i: uts.schedule(d,w))
-            System.out.print(i+", ");
-        System.out.println("");
+        CoinCombination coin = new CoinCombination();
+        int[] c = {1,5,10};
+        int sum = 30;
+        int[][] ret = coin.comb(c, sum);
+        for(int[] ci: ret){
+            for(int i: ci){
+                System.out.print(i+", ");
+            }
+            System.out.println("");
+        }
+        System.out.println(ret[c.length][sum]);
     }
 
     public static int[] generate(int min, int max, int len){
