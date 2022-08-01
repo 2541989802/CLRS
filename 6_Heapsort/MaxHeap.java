@@ -1,8 +1,9 @@
 package heapsort;
 
 public class MaxHeap<T extends Comparable<T>> extends ArrayHeap<T>{
-    public int size = 0;
+    //public int size = 0;
     public boolean maxheap = true;
+    public Object[] heap;
 
     public MaxHeap(T[] heap){
         /*super((T[])(new Oject[heap.length]));
@@ -10,15 +11,15 @@ public class MaxHeap<T extends Comparable<T>> extends ArrayHeap<T>{
             this.heap
         }*/
         super(heap);
-        size = heap.length;
+        //size = heap.length;
     }
 
     public void maxHeapify(int i){
         int l = left(i);
         int r = right(i);
         int max = i;
-        if(l < size && l >= 0){
-            if(heap[l].compareTo(heap[max]) > 0){
+        if(l < table.num() && l >= 0){
+            if(table.at(l).compareTo(table.at(max)) > 0){
                 if(maxheap)
                     max = l;
             }else{
@@ -26,8 +27,8 @@ public class MaxHeap<T extends Comparable<T>> extends ArrayHeap<T>{
                     max = l;
             }
         }
-        if(r < size && r >= 0){
-            if(heap[r].compareTo(heap[max]) > 0){
+        if(r < table.num() && r >= 0){
+            if(table.at(r).compareTo(table.at(max)) > 0){
                 if(maxheap)
                     max = r;
             }else{
@@ -36,15 +37,15 @@ public class MaxHeap<T extends Comparable<T>> extends ArrayHeap<T>{
             }
         }
         if(max != i){
-            T t = heap[i];
-            heap[i] = heap[max];
-            heap[max] = t;
+            T t = table.at(i);
+            table.set(i,table.at(max));
+            table.set(max, t);
             maxHeapify(max);
         }
     }
 
     public void buildMaxHeap(){
-        for(int i = heap.length/2; i >= 0; i--){
+        for(int i = table.num()/2; i >= 0; i--){
             maxHeapify(i);
         }
     }
@@ -52,16 +53,23 @@ public class MaxHeap<T extends Comparable<T>> extends ArrayHeap<T>{
     public void heapSort(){
         T t;
         buildMaxHeap();
-        for(int i = heap.length-1; i >= 0; i--){
-            t = heap[0];
-            heap[0] = heap[i];
-            heap[i] = t;
-            size--;
+        heap = (new Object[table.num()]);
+        for(int i = table.num()-1; i >= 0; i--){
+            t = table.at(0);
+            table.set(0, table.at(i));
+            heap[i] = (T)t;
+            //size--;
+            table.pop();
             maxHeapify(0);
         }
     }
 
-    public void resetSize(){
-        size = heap.length;
+    @SuppressWarnings("unchecked")
+    public T getHeap(int i){
+        return (T)(heap[i]);
     }
+
+    /*public void resetSize(){
+        size = heap.length;
+    }*/
 }

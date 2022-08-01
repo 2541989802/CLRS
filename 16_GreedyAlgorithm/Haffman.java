@@ -34,7 +34,7 @@ public class Haffman{
         ps.maxheap=false;
         ps.buildMaxHeap();
         Node t;
-        while(ps.size>1){
+        while(ps.size()>1){
             t = new Node(null, 0);
             t.left = ps.extractMax();
             t.right = ps.extractMax();

@@ -29,6 +29,7 @@
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\16_GreedyAlgorithm\\ActivitySelection.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\16_GreedyAlgorithm\\Haffman.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\16_GreedyAlgorithm\\UnitTaskScheduling.java" 
+"C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\17_Amortized\\DynamicTable.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\31_NumberTheoretic\\Euclid.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\31_NumberTheoretic\\ModExp.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\31_NumberTheoretic\\Prime.java" 
