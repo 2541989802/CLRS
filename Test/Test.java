@@ -12,12 +12,16 @@ import augmentingdatastructure.*;
 import dynamicprogramming.*;
 import greedyalgorithm.*;
 import dynamictable.*;
+import btree.*;
 
 public class Test{
     public static void main(String[] args){
-        Haffman hm = new Haffman();
-        hm.build(new double[]{0.1,0.05,0.3,0.12,0.3,0.13}, new String[]{"a","b","c","d","e","f"});
-        hm.print();
+        BTree<Integer> bt = new BTree<Integer>(3);
+        for(int i=0; i<20; i++){
+            //System.out.println(i);
+            bt.insertKey((int)(Math.random()*20));
+            bt.print();
+        }
     }
 
     public static int[] generate(int min, int max, int len){
