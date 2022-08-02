@@ -16,12 +16,26 @@ import btree.*;
 
 public class Test{
     public static void main(String[] args){
-        BTree<Integer> bt = new BTree<Integer>(3);
-        for(int i=0; i<20; i++){
-            //System.out.println(i);
-            bt.insertKey((int)(Math.random()*20));
-            bt.print();
+        BTree<Integer> bt = new BTree<Integer>(2);
+        int[] input = new int[100];//generate(0,100, 100);
+        for(int i=0; i<input.length; i++){
+            input[i] = (i*21)%100;
+            System.out.print(input[i]+",");
         }
+        System.out.println("");
+        for(int i=0; i<input.length; i++){
+            //System.out.println(i);
+            bt.insertKey(input[(7*i)%input.length]);
+        }
+        bt.print();
+        System.out.println("After Insertion");
+        for(int i=0; i<input.length; i++){
+            //System.out.println(i);
+            System.out.print(bt.findKey(input[(3*i)%input.length])+", ");
+            bt.deleteKey(input[(3*i)%input.length]);
+            System.out.println(bt.findKey(input[(3*i)%input.length]));
+        }
+        bt.print();
     }
 
     public static int[] generate(int min, int max, int len){

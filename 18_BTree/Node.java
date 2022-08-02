@@ -24,7 +24,7 @@ public class Node<T>{
 
     public boolean addChild(int i, Node<T> c){
         if(i<0||i>=child.length())
-            throw new RuntimeException("Node.addchild(): Index Out Of Boundary");
+            throw new RuntimeException("Node.addChild(): Index Out Of Boundary");
         child.add(i, c);
         return true;
     }
