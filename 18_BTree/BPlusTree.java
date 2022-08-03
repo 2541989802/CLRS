@@ -3,28 +3,28 @@ package btree;
 import btree.*;
 import basicdatastructure.*;
 
-public class BTree<T extends Comparable<T>>{
-    public Node<T> root;
+public class BPlusTree<K extends Comparable<K>, T>{
+    public Node<K> root;
     public int t;
     public int height;
 
-    public BTree(int i){
+    public BPlusTree(int i){
         t = i;
     }
 
-    public void insertKey(T key){
+    public void insertKey(K key, T data){
         if(root==null){
-            root=new Node<T>(t);
+            root=new PlusNode<K, T>(t);
             root.leaf = true;
             height=1;
         }
         if(root.n==t*2-1){
             splitChild(null, 0);
         }
-        insertKeyNFull(root, key);
+        insertKeyNFull(root, key, data);
     }
 
-    public void insertKeyNFull(Node<T> node, T key){
+    public void insertKeyNFull(Node<K> node, K key, T data){
         if(!node.leaf){
             int i = node.n;
             while(i>0 && key.compareTo(node.key.at(i-1))<0){
@@ -38,30 +38,34 @@ public class BTree<T extends Comparable<T>>{
                 if(key.compareTo(node.key.at(i))>=0)
                     i++;
             }
-            insertKeyNFull(node.child.at(i), key);
+            insertKeyNFull(node.child.at(i), key, data);
         } else {
             int i = node.n;
             //System.out.println(i);
             while(i>0 && key.compareTo(node.key.at(i-1))<0){
                 i--;
             }
-            node.addKey(i, key);
+            ((PlusNode<K, T>)node).addKey(i, key, data);
         }
     }
 
-    public void splitChild(Node<T> node, int i){
+    public void splitChild(Node<K> node, int i){
         if(node==null&&i==0){
-            node = new Node<T>(t);
+            node = new Node<K>(t);
             node.child.set(0, root);
             root = node;
             height++;
         }
         if(node.child.at(i)==null)
             return;
-        Node<T> ch = node.child.at(i);
+        Node<K> ch = node.child.at(i);
         int num = ch.n;
-        T k = ch.key.at(num/2);
-        Node<T> n = new Node<T>(t);
+        K k = ch.key.at(num/2);
+        Node<K> n;
+        if(ch.leaf)
+            n = new PlusNode<K, T>(t);
+        else
+            n = new Node<K>(t);
         n.leaf = ch.leaf;
         {
             int j=0;
@@ -69,7 +73,10 @@ public class BTree<T extends Comparable<T>>{
             for(x=num/2+1; x<num; x++){
                 n.key.set(j, ch.key.at(x));
                 ch.key.set(x, null);
-                if(!ch.leaf){
+                if(ch.leaf){
+                    ((PlusNode<K, T>)n).data.set(j, ((PlusNode<K, T>)ch).data.at(x));
+                    ((PlusNode<K, T>)ch).data.set(x, null);
+                } else {
                     n.child.set(j, ch.child.at(x));
                     ch.child.set(x, null);
                 }
@@ -80,15 +87,18 @@ public class BTree<T extends Comparable<T>>{
                 ch.child.set(x, null);
             }
             n.n=num-num/2-1;
-            ch.n=num/2;
+            if(ch.leaf)
+                ch.n=num/2+1;
+            else
+                ch.n=num/2;
         }
         node.addKey(i, k);
         node.addChild(i+1, n);
     }
 
-    public T findKey(T key){
+    public K findKey(K key){
         int index = -1;
-        Node<T> cur = root;
+        Node<K> cur = root;
         while(index==-1&&cur!=null){
             int i=cur.n;
             while(i>0 && key.compareTo(cur.key.at(i-1))<=0)
@@ -110,9 +120,9 @@ public class BTree<T extends Comparable<T>>{
         return null;
     }
 
-    public void deleteKey(T key){
+    public void deleteKey(K key){
         int index = -1;
-        Node<T> cur = root;
+        Node<K> cur = root;
         while(index==-1&&cur!=null){
             int i=cur.n;
             while(i>0 && key.compareTo(cur.key.at(i-1))<=0)
@@ -123,8 +133,8 @@ public class BTree<T extends Comparable<T>>{
             } else {
                 if(!cur.leaf){
                     if(i<cur.n){
-                        Node<T> ch1 = cur.child.at(i);
-                        Node<T> ch2 = cur.child.at(i+1);
+                        Node<K> ch1 = cur.child.at(i);
+                        Node<K> ch2 = cur.child.at(i+1);
                         if(ch1.n>t-1);
                         else if(ch2.n>t-1){
                             ch1.addChild(ch1.n+1, ch2.child.at(0));
@@ -136,8 +146,8 @@ public class BTree<T extends Comparable<T>>{
                             mergeNode(cur, i);
                         }
                     } else {
-                        Node<T> ch1 = cur.child.at(i-1);
-                        Node<T> ch2 = cur.child.at(i);
+                        Node<K> ch1 = cur.child.at(i-1);
+                        Node<K> ch2 = cur.child.at(i);
                         if(ch2.n>t-1);
                         else if(ch1.n>t-1){
                             ch2.addChild(0, ch1.child.at(ch1.n));
@@ -163,26 +173,34 @@ public class BTree<T extends Comparable<T>>{
         }
     }
 
-    public void deleteKey(Node<T> node, int i){
+    public void deleteKey(Node<K> node, int i){
         if(!node.leaf){
             if(node.child.at(i).n>t-1){
                 node.key.set(i, deleteLast(node.child.at(i)));
             } else if(node.child.at(i+1).n>t-1) {
-                node.key.set(i, deleteFirst(node.child.at(i+1)));
+                Node<K> ch1 = node.child.at(i);
+                Node<K> ch2 = node.child.at(i+1);
+                int index = node.child.at(i).n;
+                ch1.addChild(ch1.n+1, ch2.child.at(0));
+                ch1.addKey(ch1.n,node.key.at(0));
+                node.key.set(0, ch2.key.at(0));
+                ch2.removeChild(0);
+                ch2.removeKey(0);
+                deleteKey(node.child.at(i), index);////////////////////////////<<<<<<<<-----------------
             } else {
                 int index = node.child.at(i).n;
                 mergeNode(node, i);
                 deleteKey(node.child.at(i), index);
             }
         } else {
-            node.removeKey(i);
+            ((PlusNode<K,T>)node).removeKey(i);
         }
     }
 
-    public T deleteLast(Node<T> node){
+    public K deleteLast(Node<K> node){
         if(!node.leaf){
-            Node<T> ch1 = node.child.at(node.n-1);
-            Node<T> ch2 = node.child.at(node.n);
+            Node<K> ch1 = node.child.at(node.n-1);
+            Node<K> ch2 = node.child.at(node.n);
             if(ch2.n>t-1){
                 return deleteLast(ch2);
             } else if(ch1.n>t-1){
@@ -197,16 +215,16 @@ public class BTree<T extends Comparable<T>>{
                 return deleteLast(node.child.at(node.n));
             }
         } else {
-            T ret = node.key.at(node.n-1);
+            K ret = node.key.at(node.n-2);
             node.removeKey(node.n-1);
             return ret;
         }
     }
 
-    public T deleteFirst(Node<T> node){
+    public K deleteFirst(Node<K> node){
         if(!node.leaf){
-            Node<T> ch1 = node.child.at(0);
-            Node<T> ch2 = node.child.at(1);
+            Node<K> ch1 = node.child.at(0);
+            Node<K> ch2 = node.child.at(1);
             if(ch1.n>t-1){
                 return deleteFirst(ch1);
             } else if(ch2.n>t-1){
@@ -221,23 +239,30 @@ public class BTree<T extends Comparable<T>>{
                 return deleteFirst(node.child.at(0));
             }
         } else {
-            T ret = node.key.at(0);
+            K ret = node.key.at(0);
             node.removeKey(0);
             return ret;
         }
     }
 
-    public void mergeNode(Node<T> node, int i){
-        Node<T> ch1 = node.child.at(i);
-        Node<T> ch2 = node.child.at(i+1);
-        ch1.key.set(ch1.n, node.key.at(i));
+    public void mergeNode(Node<K> node, int i){
+        Node<K> ch1 = node.child.at(i);
+        Node<K> ch2 = node.child.at(i+1);
         int num = ch1.n+1+ch2.n;
         int j=0;
-        int x;
-        for(x=ch1.n+1; x<num; x++){
+        int x=ch1.n+1;
+        if(!ch1.leaf)
+            ch1.key.set(ch1.n, node.key.at(i));
+        else{
+            num--;
+            x--;
+        }
+        for(; x<num; x++){
             ch1.key.set(x, ch2.key.at(j));
             if(!ch1.leaf)
                 ch1.child.set(x, ch2.child.at(j));
+            else
+                ((PlusNode<K,T>)ch1).data.set(x, ((PlusNode<K,T>)ch2).data.at(j));
             j++;
         }
         if(!ch1.leaf)
@@ -253,9 +278,9 @@ public class BTree<T extends Comparable<T>>{
 
     @SuppressWarnings("unchecked")
     public void print(){
-        Queue<Node<T>> q1 = (Queue<Node<T>>)new Queue((int)Math.pow(2*t,height));
-        Queue<Node<T>> q2 = (Queue<Node<T>>)new Queue((int)Math.pow(2*t,height));
-        Node<T> t;
+        Queue<Node<K>> q1 = (Queue<Node<K>>)new Queue((int)Math.pow(2*t,height));
+        Queue<Node<K>> q2 = (Queue<Node<K>>)new Queue((int)Math.pow(2*t,height));
+        Node<K> t;
         boolean isq1 = true;
         System.out.println(height+":");
         q1.enqueue(root);
