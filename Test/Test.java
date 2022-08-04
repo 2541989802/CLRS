@@ -16,27 +16,27 @@ import btree.*;
 
 public class Test{
     public static void main(String[] args){
-        BPlusTree<Integer, Integer> bt = new BPlusTree<Integer, Integer>(2);
-        int[] input = new int[10];//generate(0,100, 100);
-        for(int i=0; i<input.length; i++){
-            input[i] = (i*7)%10;
-            System.out.print(input[i]+",");
-        }
+        BPlusTree<Integer, Integer> bt = new BPlusTree<Integer, Integer>((int)(Math.random()*20+2));
+        int[] input = generate(0,100, (int)(Math.random()*1000+100));
         System.out.println("");
         for(int i=0; i<input.length; i++){
-            //System.out.println(i);
-            bt.insertKey(input[(7*i)%input.length], i);
+            bt.insertKey(input[i], input[i]*10);
         }
         bt.print();
-        /*
+        
+        for(int i=0; i<input.length; i++){
+            if(!bt.findData(input[i]).equals(input[i]*10)){
+                System.out.println("ERROR with KEY: "+input[i]+", Data:"+i);
+            }
+        }
         System.out.println("After Insertion");
         for(int i=0; i<input.length; i++){
-            //System.out.println(i);
-            System.out.print(bt.findKey(input[(3*i)%input.length])+", ");
-            bt.deleteKey(input[(3*i)%input.length]);
-            System.out.println(bt.findKey(input[(3*i)%input.length]));
+            if(bt.findData(input[i])!=input[i]*10){
+                System.out.println("ERROR with KEY: "+input[i]);
+            }
+            bt.deleteKey(input[i]);
         }
-        bt.print();*/
+        bt.print();
     }
 
     public static int[] generate(int min, int max, int len){
