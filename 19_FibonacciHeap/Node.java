@@ -34,6 +34,8 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>>{
         if(next!=this){
             prev.next = next;
             next.prev = prev;
+            next = this;
+            prev = this;
         }
     }
 
@@ -43,16 +45,16 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>>{
             n.next = n;
             n.prev = n;
         } else {
-            n.parent = this;
             child.addNext(n);
         }
+        n.parent = this;
         n.mark=false;
         degree++;
     }
 
     public void removeChild(Node<T> n){
         if(n.parent!=this)
-            return;
+            throw new RuntimeException("Node.removeChild(): n.parent!=this");
         n.parent=null;
         n.mark=false;
         this.mark=true;

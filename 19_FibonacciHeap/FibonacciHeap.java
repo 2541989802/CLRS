@@ -61,7 +61,7 @@ public class FibonacciHeap<T extends Comparable<T>>{
             Node<T>ch;
             node.parent.removeChild(node);
             min.addNext(node);
-            if(min.compareTo(node)>0)
+            if(node.compareTo(min)<0)
                 min=node;
             while(cur!=null&&cur.mark&&cur.parent!=null){
                 ch = cur;
@@ -99,7 +99,7 @@ public class FibonacciHeap<T extends Comparable<T>>{
             nodes.set(cur.degree, cur);
         }
 
-        for(int i=0; i< nodes.length(); i++){
+        for(int i=0; i<nodes.length(); i++){
             if(nodes.at(i)!=null){
                 if(min==null){
                     min=nodes.at(i);
@@ -113,6 +113,8 @@ public class FibonacciHeap<T extends Comparable<T>>{
     }
 
     public int dN(){
+        if(num<=0)
+            return 0;
         return (int)(Math.log10(num)/Math.log10((1+Math.pow(5,0.5))/2))+1;
     }
 }

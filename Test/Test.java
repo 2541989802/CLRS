@@ -13,30 +13,27 @@ import dynamicprogramming.*;
 import greedyalgorithm.*;
 import dynamictable.*;
 import btree.*;
+import fibonacciheap.*;
 
 public class Test{
     public static void main(String[] args){
-        BPlusTree<Integer, Integer> bt = new BPlusTree<Integer, Integer>((int)(Math.random()*20+2));
-        int[] input = generate(0,100, (int)(Math.random()*1000+100));
+        FibonacciHeap<Integer> fh = new FibonacciHeap<Integer>();
+        int[] ia = generate(0,100,10000);
+        for(int i: ia){
+            fh.insert(i);
+            //System.out.print(i+", ");
+        }
         System.out.println("");
-        for(int i=0; i<input.length; i++){
-            bt.insertKey(input[i], input[i]*10);
+        int i,j;
+        i=fh.extractMin();
+        while(fh.num>0){
+            j=fh.extractMin();
+            if(i>j)
+                System.out.print(""+false);
+            i=j;
+            //System.out.print(fh.extractMin()+", ");
         }
-        bt.print();
-        
-        for(int i=0; i<input.length; i++){
-            if(!bt.findData(input[i]).equals(input[i]*10)){
-                System.out.println("ERROR with KEY: "+input[i]+", Data:"+i);
-            }
-        }
-        System.out.println("After Insertion");
-        for(int i=0; i<input.length; i++){
-            if(bt.findData(input[i])!=input[i]*10){
-                System.out.println("ERROR with KEY: "+input[i]);
-            }
-            bt.deleteKey(input[i]);
-        }
-        bt.print();
+        System.out.println("");
     }
 
     public static int[] generate(int min, int max, int len){
