@@ -14,26 +14,47 @@ import greedyalgorithm.*;
 import dynamictable.*;
 import btree.*;
 import fibonacciheap.*;
+import vanemdeboas.*;
 
 public class Test{
     public static void main(String[] args){
-        FibonacciHeap<Integer> fh = new FibonacciHeap<Integer>();
-        int[] ia = generate(0,100,10000);
-        for(int i: ia){
-            fh.insert(i);
-            //System.out.print(i+", ");
+        ProtoVanEmdeBoas veb = new ProtoVanEmdeBoas((int)Math.pow(2,15));
+        int[] input = generate(0, veb.u-1, 100);
+        for(int i=0; i<input.length; i++){
+            System.out.print("("+input[i]+":"+veb.member(input[i])+"), ");
         }
-        System.out.println("");
-        int i,j;
-        i=fh.extractMin();
-        while(fh.num>0){
-            j=fh.extractMin();
-            if(i>j)
-                System.out.print(""+false);
-            i=j;
-            //System.out.print(fh.extractMin()+", ");
+        for(int i=0; i<input.length; i++){
+            veb.insert(input[i]);
         }
-        System.out.println("");
+        System.out.println("\nAfter Insert");
+        for(int i=0; i<input.length; i++){
+            System.out.print("("+input[i]+":"+veb.member(input[i])+"), ");
+        }
+        System.out.println("\nBefore Delete 1");
+        int next = 0;
+        if(veb.member(next))
+            System.out.print(next+", ");
+        while(next!=-1){
+            next = veb.successor(next);
+            if(next!=-1)
+                System.out.print(next+", ");
+        }
+        System.out.println("\nBefore Delete 2");
+        next = veb.u-1;
+        if(veb.member(next))
+            System.out.print(next+", ");
+        while(next!=-1){
+            next = veb.predecessor(next);
+            if(next!=-1)
+                System.out.print(next+", ");
+        }
+        for(int i=0; i<input.length/2; i++){
+            veb.delete(input[i]);
+        }
+        System.out.println("\nAfter Delete");
+        for(int i=0; i<input.length; i++){
+            System.out.print("("+input[i]+":"+veb.member(input[i])+"), ");
+        }
     }
 
     public static int[] generate(int min, int max, int len){
