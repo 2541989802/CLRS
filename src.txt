@@ -39,6 +39,8 @@
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\19_FibonacciHeap\\Node.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\20_vanEmdeBoasTree\\ProtoVanEmdeBoas.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\20_vanEmdeBoasTree\\ProtovEB.java" 
+"C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\20_vanEmdeBoasTree\\VanEmdeBoas.java" 
+"C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\20_vanEmdeBoasTree\\VEB.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\31_NumberTheoretic\\Euclid.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\31_NumberTheoretic\\ModExp.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\31_NumberTheoretic\\Prime.java" 

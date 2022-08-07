@@ -14,6 +14,8 @@ public class ProtoVanEmdeBoas{
     }
 
     public boolean member(int x){
+        if(x<0 || x>=root.ur*root.lr)
+            return false;
         return member(root, x);
     }
 

@@ -1,18 +1,22 @@
 package vanemdeboas;
 
-public class ProtovEB{
+public class VEB{
     public int ur;
     public int lr;
     public int n;
-    public ProtovEB summary;
-    public ProtovEB[] cluster;
-    public ProtovEB(int u){
+    public VEB summary;
+    public VEB[] cluster;
+    public int min;
+    public int max;
+    public VEB(int u){
+        min=-1;
+        max=-1;
         n=0;
         if(u<=2){
             ur=2;
             lr=1;
             summary = this;
-            cluster = new ProtovEB[2];
+            cluster = new VEB[2];
         } else {
             int k=1;
             lr=0;
@@ -22,11 +26,11 @@ public class ProtovEB{
             }
             lr=(int)Math.pow(2, lr/2);
             ur=u/lr;
-            cluster = new ProtovEB[ur];
+            cluster = new VEB[ur];
             for(int i=0; i< ur; i++){
-                cluster[i] = new ProtovEB(lr);
+                cluster[i] = new VEB(lr);
             }
-            summary = new ProtovEB(ur);
+            summary = new VEB(ur);
         }
     }
 }
