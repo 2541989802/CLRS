@@ -1,27 +1,54 @@
-package test;
-import lineartimesorting.*;
-import selection.*;
-import quicksort.*;
-import heapsort.*;
-import basicdatastructure.*;
-import numbertheoretic.*;
-import hashtable.*;
-import binarysearchtree.*;
-import redblacktree.*;
-import augmentingdatastructure.*;
-import dynamicprogramming.*;
-import greedyalgorithm.*;
-import dynamictable.*;
-import btree.*;
-import fibonacciheap.*;
-import vanemdeboas.*;
-import disjointset.*;
+package disjointset;
 
-import java.util.*;
+import basicdatastructure.LinkList;
 
-public class Test{
-    public static void main(String[] args){
-        DisjointSet<String> ds = new DisjointSet<>();
+public class DisjointSet<T extends Comparable<T>>{
+    public LinkList<Node<T>> list;
+
+    public DisjointSet(){
+        list = (LinkList<Node<T>>)new LinkList();
+    }
+
+    public Node<T> makeSet(T e){
+        Node<T> ret = new Node<T>(e);
+        list.insert(ret);
+        return ret;
+    }
+
+    public Node<T> findSet(Node<T> x){
+        if(x != x.parent)
+            x.parent = findSet(x.parent);
+        return x.parent;
+    }
+
+    public Node<T> findSet(T key){
+        return findSet(list.search(new Node<T>(key)));
+    }
+
+    public void link(Node<T> x, Node<T> y){
+        if(x.rank>y.rank)
+            y.parent = x;
+        else{
+            x.parent = y;
+            if(x.rank==y.rank)
+                y.rank+=1;
+        }
+    }
+
+    public void union(T x, T y){
+        union(list.search(new Node<T>(x)),list.search(new Node<T>(y)));
+    }
+
+    public void union(Node<T> x, Node<T> y){
+        if(x==null||y==null)
+            return;
+        x = findSet(x);
+        y = findSet(y);
+        if(x!=y)
+            link(x, y);
+    }
+}
+/*
         Scanner scan = new Scanner(System.in);
         String input = "";
         while(!input.equals("!q")){
@@ -66,36 +93,4 @@ public class Test{
                 input = "";
             }
         }
-    }
-
-    public static int[] generate(int min, int max, int len){
-        int[] res = new int[len];
-        for(int i = 0; i < len; i++)
-            res[i] = (int)(Math.random()*(max+1-min))+min;
-        return res;
-    }
-
-    public static void check(int[] A){
-        for(int i = 1; i < A.length; i++){
-            if(A[i-1]>A[i]){
-                System.out. println(false);
-                return;
-            }
-        }
-        System.out.println(true);
-        return;
-    }
-
-    public static Integer[] intAtoIntA(int[] a){
-        Integer[] res = new Integer[a.length];
-        for(int i = 0; i < a.length; i++)
-            res[i] = a[i];
-        return res;
-    }
-    public static String[] intAtoStringA(int[] a){
-        String[] res = new String[a.length];
-        for(int i = 0; i < a.length; i++)
-            res[i] = String.format("%d",a[i]);
-        return res;
-    }
-}
+*/
