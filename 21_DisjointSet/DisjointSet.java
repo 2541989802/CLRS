@@ -5,6 +5,7 @@ import basicdatastructure.LinkList;
 public class DisjointSet<T extends Comparable<T>>{
     public LinkList<Node<T>> list;
 
+    @SuppressWarnings("unchecked")
     public DisjointSet(){
         list = (LinkList<Node<T>>)new LinkList();
     }

@@ -43,6 +43,8 @@
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\20_vanEmdeBoasTree\\VEB.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\21_DisjointSet\\DisjointSet.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\21_DisjointSet\\Node.java" 
+"C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\22_ElementaryGraphAlgorithm\\Graph.java" 
+"C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\26_MaxFlow\\RelabelToFront.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\31_NumberTheoretic\\Euclid.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\31_NumberTheoretic\\ModExp.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\31_NumberTheoretic\\Prime.java" 

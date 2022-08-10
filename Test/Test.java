@@ -16,54 +16,70 @@ import btree.*;
 import fibonacciheap.*;
 import vanemdeboas.*;
 import disjointset.*;
+import maxflow.*;
 
 import java.util.*;
 
 public class Test{
     public static void main(String[] args){
-        DisjointSet<String> ds = new DisjointSet<>();
+        RelabelToFront mf = new RelabelToFront();
         Scanner scan = new Scanner(System.in);
         String input = "";
         while(!input.equals("!q")){
             System.out.print("Mode/!q: ");input = scan.nextLine();
-            if(input.equals("make")){
-                System.out.println(">>>MakeSet>>>");
+            if(input.equals("node")){
+                System.out.println(">>>Add Node>>>");
                 while(!input.equals("!q")){
-                    System.out.print("Set/!q: "); input = scan.nextLine();
+                    System.out.print("Add Node/!q: "); input = scan.nextLine();
                     if(!input.equals("!q")){
-                        ds.makeSet(input);
+                        mf.addNode(input);
                     }
                 }
-                System.out.println("<<<MakeSet<<<");
+                System.out.println("<<<Add Node<<<");
                 input = "";
-            } else if(input.equals("union")) {
-                System.out.println(">>>Union>>>");
+            } else if(input.equals("edge")) {
+                System.out.println(">>>Add Edge>>>");
                 String b;
+                int c;
                 while(!input.equals("!q")){
-                    System.out.print("A/!q: "); input = scan.nextLine();
+                    System.out.print("From/!q: "); input = scan.nextLine();
                     if(input.equals("!q"))
                         break;
-                    System.out.print("B/!q: "); b = scan.nextLine();
+                    System.out.print("To/!q: "); b = scan.nextLine();
                     if(b.equals("!q"))
                         break;
-                    ds.union(input, b);
+                    System.out.print("Capcity/!q: "); c = scan.nextInt(); scan.nextLine();
+                    if(c<0)
+                        continue;
+                    mf.addEdge(input, b, c);
                 }
-                System.out.println("<<<Union<<<");
+                System.out.println("<<<Add Edge<<<");
                 input = "";
             } else if(input.equals("check")){
                 System.out.println(">>>Check>>>");
                 String b;
                 while(!input.equals("!q")){
-                    System.out.print("A/!q: "); input = scan.nextLine();
+                    System.out.print("From/!q: "); input = scan.nextLine();
                     if(input.equals("!q"))
                         break;
-                    System.out.print("B/!q: "); b = scan.nextLine();
+                    System.out.print("To/!q: "); b = scan.nextLine();
                     if(b.equals("!q"))
                         break;
-                    System.out.println("OUT:"+(ds.findSet(input)==ds.findSet(b)));
+                    System.out.println("Flow:"+(mf.check(input, b)));
                 }
                 System.out.println("<<<Check<<<");
                 input = "";
+            } else if(input.equals("run")){
+                String b;
+                System.out.print("S/!q: "); input = scan.nextLine();
+                if(input.equals("!q"))
+                    continue;
+                System.out.print("T/!q: "); b = scan.nextLine();
+                if(b.equals("!q"))
+                    continue;
+                mf.calculate(input, b);
+            } else if(input.equals("new")){
+                mf = new RelabelToFront();
             }
         }
     }
