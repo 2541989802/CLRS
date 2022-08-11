@@ -17,8 +17,11 @@ public class RedBlackTree<T extends Comparable<T>> extends BinarySearchTree<T>{
         return height((Node<T>)root);
     }
 
-    public void insert(T data){
-        insert(new Node<T>(data, null, false));
+    @Override
+    public Node<T> insert(T data){
+        Node<T> ret = new Node<T>(data, null, false);
+        insert(ret);
+        return ret;
     }
 
     public void insert(Node<T> node){

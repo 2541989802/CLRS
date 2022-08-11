@@ -82,9 +82,27 @@ public class BinarySearchTree<T extends Comparable<T>>{
         }
         return null;
     }
+    
+    public Node<T> predecessor_h(Node<T> node){
+        if(node!=null){
+            if(node.left!=null)
+                return max_h(node.left);
+            else {
+                while(node.parent!=null && node.parent.left==node)
+                    node = node.parent;
+                return node.parent;
+                }
+        }
+        return null;
+    }
 
     public T successor(T key){
         Node<T> res = successor_h(search2_h(root, key));
+        return res!=null?res.data:null;
+    }
+
+    public T predecessor(T key){
+        Node<T> res = predecessor_h(search2_h(root, key));
         return res!=null?res.data:null;
     }
 
@@ -108,8 +126,10 @@ public class BinarySearchTree<T extends Comparable<T>>{
         size++;
     }
 
-    public void insert(T key){
-        insert(new Node<T>(key, null));
+    public Node<T> insert(T key){
+        Node<T> ret = new Node<T>(key, null);
+        insert(ret);
+        return ret;
     }
 
     //v replace u

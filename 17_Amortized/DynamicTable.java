@@ -8,12 +8,12 @@ public class DynamicTable<T>{
     @SuppressWarnings("unchecked")
     public void push(T e){
         if(size==0){
-            System.out.println("resize:"+1);
+            //System.out.println("resize:"+1);
             table = new Object[1];
             size = 1;
         }
         else if(size==num){
-            System.out.println("resize:"+(size*2));
+            //System.out.println("resize:"+(size*2));
             Object[] temp = new Object[2*size];
             for(int i=0; i<num; i++){
                 temp[i] = table[i];
@@ -32,7 +32,7 @@ public class DynamicTable<T>{
         num--;
         Object res = table[num];
         if(num==size/4){
-            System.out.println("resize:"+size/4);
+            //System.out.println("resize:"+size/4);
             if(num==0)
                 table = null;
             else{

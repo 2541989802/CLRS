@@ -4,8 +4,10 @@ import redblacktree.RedBlackTree;
 import augmentingdatastructure.Node;
 
 public class OSIntervalTree<T extends Comparable<T>> extends RedBlackTree<T>{
-    public void insert(T data){
-        insert(new Node<T>(data, data, null, false));
+    public Node<T> insert(T data){
+        Node<T> ret = new Node<T>(data, data, null, false);
+        insert(ret);
+        return ret;
     }
 
     public void insert(T low, T high){
