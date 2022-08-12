@@ -24,14 +24,14 @@ import java.util.*;
 
 public class Test{
     public static void main(String[] args){
-        AnySegmentIntersection anySeg = new AnySegmentIntersection();
+        GrahamScan grah = new GrahamScan();
         Scanner scan = new Scanner(System.in);
         String input = "";
         while(!input.equals("!q")){
             System.out.print("Mode/!q: ");input = scan.nextLine();
             if(input.equals("add")){
-                System.out.println(">>>Add Segment>>>");
-                double p1x,p1y,p2x,p2y;
+                System.out.println(">>>Add Point>>>");
+                double p1x,p1y;
                 while(!input.equals("!q")){
                     System.out.print("p1.x/!q: "); p1x = scan.nextDouble();scan.nextLine();
                     if(p1x<-100)
@@ -39,20 +39,20 @@ public class Test{
                     System.out.print("p1.y/!q: "); p1y = scan.nextDouble();scan.nextLine();
                     if(p1y<-100)
                         break;
-                    System.out.print("p2.x/!q: "); p2x = scan.nextDouble();scan.nextLine();
-                    if(p2x<-100)
-                        break;
-                    System.out.print("p2.y/!q: "); p2y = scan.nextDouble();scan.nextLine();
-                    if(p2y<-100)
-                        break;
-                    anySeg.addSegment(new Segment(p1x, p1y, p2x, p2y));
+                    grah.addDot(new Dot(p1x, p1y));
                 }
-                System.out.println("<<<Add Segment<<<");
+                System.out.println("<<<Add Point<<<");
                 input = "";
             } else if(input.equals("check")) {
-                System.out.println("OUT: "+anySeg.check());
+                Dot[] ds = grah.check();
+                System.out.print("OUT: ");
+                if(ds==null)
+                    continue;
+                for(Dot d: ds)
+                    System.out.print(d+", ");
+                System.out.println("");
             } else if(input.equals("new")){
-                anySeg = new AnySegmentIntersection();
+                grah = new GrahamScan();
             }
         }
     }

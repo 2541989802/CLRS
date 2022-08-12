@@ -35,4 +35,15 @@ public class Stack<T>{
         top--;
         return (T)(oa[top+1]);
     }
+
+    public int num(){
+        return top+1;
+    }
+
+    @SuppressWarnings("unchecked")
+    public T at(int i){
+        if(i>=0&&top-i>=0)
+            return (T)(oa[top-i]);
+        return null;
+    }
 }
