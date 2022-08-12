@@ -54,6 +54,7 @@
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\32_StringMatching\\KMP.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\32_StringMatching\\PlainMethod.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\33_ComputationalGeometry\\AnySegmentIntersection.java" 
+"C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\33_ComputationalGeometry\\ClosestPair.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\33_ComputationalGeometry\\Dot.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\33_ComputationalGeometry\\GrahamScan.java" 
 "C:\\Users\\25419\\Desktop\\Geogia Tech\\CLRS\\33_ComputationalGeometry\\Segment.java" 

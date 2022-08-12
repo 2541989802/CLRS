@@ -24,37 +24,6 @@ import java.util.*;
 
 public class Test{
     public static void main(String[] args){
-        GrahamScan grah = new GrahamScan();
-        Scanner scan = new Scanner(System.in);
-        String input = "";
-        while(!input.equals("!q")){
-            System.out.print("Mode/!q: ");input = scan.nextLine();
-            if(input.equals("add")){
-                System.out.println(">>>Add Point>>>");
-                double p1x,p1y;
-                while(!input.equals("!q")){
-                    System.out.print("p1.x/!q: "); p1x = scan.nextDouble();scan.nextLine();
-                    if(p1x<-100)
-                        break;
-                    System.out.print("p1.y/!q: "); p1y = scan.nextDouble();scan.nextLine();
-                    if(p1y<-100)
-                        break;
-                    grah.addDot(new Dot(p1x, p1y));
-                }
-                System.out.println("<<<Add Point<<<");
-                input = "";
-            } else if(input.equals("check")) {
-                Dot[] ds = grah.check();
-                System.out.print("OUT: ");
-                if(ds==null)
-                    continue;
-                for(Dot d: ds)
-                    System.out.print(d+", ");
-                System.out.println("");
-            } else if(input.equals("new")){
-                grah = new GrahamScan();
-            }
-        }
     }
 
     public static int[] generate(int min, int max, int len){
