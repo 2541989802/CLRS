@@ -147,10 +147,6 @@ public class ClosestPair{
                     temp[i] = dsy[ri];
                     ri++;
                 }
-                //if(temp[i].d.x==5&&temp[i].d.y==4)
-                //    System.out.println("exist:"+temp[i].d+","+mid.d);
-                //if(temp[i].d.x==6&&temp[i].d.y==4)
-                //    System.out.println("exist:"+temp[i].d+","+mid.d);
                 if(Math.abs(temp[i].d.x-mid.d.x)<=min)
                     count++;
             }
